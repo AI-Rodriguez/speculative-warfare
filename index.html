@@ -785,15 +785,50 @@ body.es [data-es] { display: revert !important; }
 @media (max-width: 768px) {
   nav { padding: 1rem 1.2rem; }
   .nav-links { display: none; }
-  .hero { padding: 0 1.5rem 4rem; }
-  #essays { padding: 5rem 1.5rem; }
+  .nav-r { gap: 0.8rem; }
+
+  /* Hero — prevent title overflow on small screens */
+  .hero { padding: 0 1.2rem 3.5rem; }
+  .title-line { font-size: clamp(3rem, 18vw, 5.5rem); }
+  .hero-tag { font-size: 0.48rem; letter-spacing: 0.2em; }
+  .hero-desc { font-size: 0.58rem; max-width: 100%; }
+  .hero-sub { flex-direction: column; gap: 1.5rem; }
+  .scroll-hint { margin-left: 0; flex-direction: row; gap: 1rem; }
+  .scroll-hint-line { width: 30px; height: 1px; background: linear-gradient(to right, var(--red), transparent); animation: none; }
+
+  /* Scroll showcase */
+  .sc-panel { padding: 0 1.2rem; }
+  .sc-label { left: 1.2rem; top: 5rem; font-size: 0.45rem; }
+  .sc-counter { right: 1.2rem; bottom: 2rem; }
+  .sc-p1-title { font-size: clamp(2rem, 10vw, 4rem); }
+  .sc-p2-quote { font-size: clamp(1.1rem, 5vw, 2rem); padding: 0 0.5rem; }
+  .sc-p3-num { font-size: 5rem; }
+  .sc-p3-title { font-size: clamp(1.1rem, 5vw, 1.8rem); }
+  .sc-p3-text { font-size: 0.6rem; }
+  .sc-tag-big.sz1 { font-size: clamp(1.5rem, 7vw, 3rem); }
+  .sc-tag-big.sz2 { font-size: clamp(1rem, 4vw, 2rem); }
+  .sc-tag-big.sz3 { font-size: clamp(0.8rem, 3vw, 1.4rem); }
+  .sc-p5-title { font-size: clamp(1.8rem, 7vw, 3.5rem); }
+
+  /* Essays */
+  #essays { padding: 4rem 1.2rem; }
   .essays-head { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-  .essay-row { grid-template-columns: 50px 1fr; }
+  .essay-row { grid-template-columns: 45px 1fr; gap: 1rem; padding: 1.8rem 0; }
   .essay-arrow { display: none; }
-  footer { flex-direction: column; gap: 2rem; align-items: flex-start; }
+  .essay-t { font-size: 1rem; }
+  .essay-x { font-size: 0.58rem; }
+
+  /* Strip */
+  .strip-inner { font-size: 0.9rem; }
+
+  /* Footer */
+  footer { flex-direction: column; gap: 2rem; align-items: flex-start; padding: 3rem 1.2rem 2rem; }
   .footer-info { text-align: left; }
-  .sc-panel { padding: 0 1.5rem; }
-  .sc-label { left: 1.5rem; }
+  .footer-logo { font-size: 2.5rem; }
+
+  /* Intro */
+  #intro { padding: 1.5rem; }
+  .intro-logo { font-size: clamp(2rem, 12vw, 4rem); }
 }
 </style>
 </head>
@@ -1313,14 +1348,32 @@ function startViz() {
 function enter() {
   document.getElementById('intro').classList.add('gone');
   animateChars();
-  // Auto-start audio
-  buildAudio();
-  playing = true;
-  master.gain.linearRampToValueAtTime(0.55, ctx.currentTime + 2);
-  document.getElementById('audio-btn').classList.add('on');
-  document.getElementById('visualizer').classList.add('on');
-  startViz();
+
+  // Build audio inside user gesture — required for iOS Safari
+  try {
+    buildAudio();
+    const startAudio = () => {
+      master.gain.linearRampToValueAtTime(0.55, ctx.currentTime + 2);
+      playing = true;
+      document.getElementById('audio-btn').classList.add('on');
+      document.getElementById('visualizer').classList.add('on');
+      startViz();
+    };
+    // iOS requires explicit resume inside gesture handler
+    if (ctx.state === 'suspended') {
+      ctx.resume().then(startAudio);
+    } else {
+      startAudio();
+    }
+  } catch(e) {
+    console.log('Audio not available:', e);
+  }
 }
+
+// iOS Safari second-chance unlock on any touch
+document.addEventListener('touchstart', function unlockAudio() {
+  if (ctx && ctx.state === 'suspended') ctx.resume();
+}, { once: true });
 </script>
 </body>
 </html>
