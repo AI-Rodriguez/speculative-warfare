@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPECULATIVE WARFARE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   THEME TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  --red:        #c8001a;
+  --red-dim:    #5a000c;
+  --mono:       'Share Tech Mono', monospace;
+  --display:    'Bebas Neue', sans-serif;
+  --serif:      'DM Serif Display', serif;
+  --body-mono:  'Space Mono', monospace;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --bg:           #030303;
+  --bg2:          #0a0a0a;
+  --fg:           #e8e4dc;
+  --fg-dim:       #888;
+  --fg-dimmer:    #333;
+  --border:       rgba(255,255,255,0.055);
+  --border-r:     rgba(200,0,26,0.22);
+  --grid:         rgba(200,0,26,0.055);
+  --noise:        0.045;
+  --scan:         0.13;
+  --strip-bg:     rgba(200,0,26,0.03);
+  --strip-fg:     rgba(232,228,220,0.1);
+  --nav-bg:       rgba(3,3,3,0.9);
+  --glow:         rgba(200,0,26,0.12);
+  --card-bg:      rgba(255,255,255,0.02);
+}
+
+[data-theme="light"] {
+  --bg:           #f0ebe2;
+  --bg2:          #e8e2d9;
+  --fg:           #151210;
+  --fg-dim:       #666;
+  --fg-dimmer:    #bbb;
+  --border:       rgba(0,0,0,0.06);
+  --border-r:     rgba(200,0,26,0.18);
+  --grid:         rgba(200,0,26,0.045);
+  --noise:        0.02;
+  --scan:         0;
+  --strip-bg:     rgba(200,0,26,0.04);
+  --strip-fg:     rgba(21,18,16,0.08);
+  --nav-bg:       rgba(240,235,226,0.94);
+  --glow:         rgba(200,0,26,0.07);
+  --card-bg:      rgba(0,0,0,0.02);
+}
+
+/* ═══════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body-mono);
+  overflow-x: hidden;
+  cursor: crosshair;
+  transition: background 0.6s, color 0.6s;
+}
+
+/* NOISE */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--noise);
+  pointer-events: none; z-index: 9999;
+  transition: opacity 0.6s;
+}
+
+/* SCANLINES */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,var(--scan)) 2px, rgba(0,0,0,var(--scan)) 4px);
+  pointer-events: none; z-index: 9998;
+  transition: opacity 0.6s;
+}
+
+/* ═══════════════════════════════════════════════
+   INTRO SCREEN
+═══════════════════════════════════════════════ */
+#intro {
+  position: fixed; inset: 0; z-index: 20000;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2.5rem;
+  transition: opacity 1s var(--ease-out), visibility 1s;
+}
+
+#intro.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.intro-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.45em;
+  color: #333;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.intro-logo {
+  font-family: var(--display);
+  font-size: clamp(3rem, 10vw, 7rem);
+  letter-spacing: 0.1em;
+  color: #e8e4dc;
+  text-align: center;
+  line-height: 0.9;
+  animation: flicker 4s infinite 1s;
+}
+
+.intro-logo .ir { color: var(--red); }
+
+.intro-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: pulse-line 2s infinite;
+}
+
+.enter-zone {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1rem;
+}
+
+.enter-btn {
+  background: none;
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  padding: 0.9rem 3.5rem;
+  cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: color 0.3s;
+}
+
+.enter-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--red);
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.enter-btn:hover { color: #fff; }
+.enter-btn:hover::before { transform: translateX(0); }
+.enter-btn span { position: relative; z-index: 1; }
+
+.audio-note {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.2em;
+  color: #2a2a2a;
+  text-align: center;
+  line-height: 2.2;
+}
+
+/* ═══════════════════════════════════════════════
+   VISUALIZER
+═══════════════════════════════════════════════ */
+#visualizer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 4px; z-index: 300;
+  display: flex; gap: 1px;
+  opacity: 0; transition: opacity 0.5s;
+}
+
+#visualizer.on { opacity: 1; }
+.vb { flex: 1; background: var(--red); transform-origin: bottom; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 3rem;
+  border-bottom: 1px solid var(--border-r);
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  transition: background 0.6s, border-color 0.6s;
+}
+
+.nav-logo {
+  font-family: var(--display);
+  font-size: 1.35rem; letter-spacing: 0.3em;
+  color: var(--fg); text-decoration: none;
+  transition: color 0.6s;
+}
+.nav-logo em { color: var(--red); font-style: normal; }
+
+.nav-r { display: flex; align-items: center; gap: 1.5rem; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--fg-dim); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--red); }
+
+.ctrl-group { display: flex; gap: 0.5rem; }
+
+.icon-btn {
+  background: none;
+  border: 1px solid var(--fg-dimmer);
+  color: var(--fg-dim);
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 0.85rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.icon-btn:hover, .icon-btn.on { border-color: var(--red); color: var(--red); }
+
+.lang-wrap { display: flex; gap: 0.4rem; }
+.lang-btn {
+  background: none;
+  border: 1px solid var(--fg-dimmer);
+  color: var(--fg-dim);
+  padding: 0.26rem 0.55rem;
+  cursor: pointer; font-family: var(--mono);
+  font-size: 0.56rem; letter-spacing: 0.15em;
+  transition: all 0.2s;
+}
+.lang-btn.on, .lang-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* ═══════════════════════════════════════════════
+   HERO — ANIMATED SHOWCASE STYLE
+═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  position: relative; overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+  transition: background-image 0.6s;
+}
+
+.hero-glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 65% 35%, rgba(200,0,26,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 35% at 25% 75%, rgba(200,0,26,0.05) 0%, transparent 60%);
+  transition: opacity 0.6s;
+}
+
+/* Coordinate tag */
+.hero-tag {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.35em; color: var(--red);
+  margin-bottom: 1.8rem;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+
+/* Big animated title */
+.hero-title {
+  line-height: 0.86; margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+}
+
+.title-line {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(5rem, 13vw, 12rem);
+  overflow: hidden;
+}
+
+.title-word {
+  display: inline-block;
+  position: relative;
+}
+
+/* Letter-by-letter split */
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%);
+  animation: charIn 0.6s var(--ease-out) forwards;
+}
+
+.title-line:nth-child(2) .char { color: var(--red); }
+
+/* Glitch on the first word */
+.glitch-wrap { position: relative; display: inline-block; }
+.glitch-wrap::before, .glitch-wrap::after {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0;
+  font-family: var(--display);
+  font-size: inherit; color: inherit;
+}
+.glitch-wrap::before {
+  color: var(--red);
+  animation: g1 6s infinite;
+  clip-path: polygon(0 18%, 100% 18%, 100% 36%, 0 36%);
+}
+.glitch-wrap::after {
+  color: #00e5ff;
+  animation: g2 6s infinite;
+  clip-path: polygon(0 62%, 100% 62%, 100% 82%, 0 82%);
+  opacity: 0.25;
+}
+
+.hero-sub {
+  display: flex; align-items: flex-end;
+  gap: 3rem;
+  opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
+}
+
+.hero-desc {
+  font-family: var(--mono); font-size: 0.63rem;
+  letter-spacing: 0.18em; line-height: 2.2;
+  color: var(--fg-dim);
+  border-left: 1px solid var(--red-dim);
+  padding-left: 1.5rem;
+  max-width: 340px;
+  transition: color 0.6s, border-color 0.6s;
+}
+
+.scroll-hint {
+  margin-left: auto;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.5rem;
+  font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.2em; color: var(--fg-dimmer);
+  text-transform: uppercase;
+}
+
+.scroll-hint-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: pulse-line 2s infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   MARQUEE STRIP
+═══════════════════════════════════════════════ */
+.strip {
+  border-top: 1px solid var(--border-r);
+  border-bottom: 1px solid var(--border-r);
+  padding: 2rem 0; overflow: hidden;
+  background: var(--strip-bg);
+  transition: background 0.6s, border-color 0.6s;
+}
+
+.strip-inner {
+  white-space: nowrap;
+  display: inline-block;
+  animation: marquee 40s linear infinite;
+  font-family: var(--display);
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  letter-spacing: 0.12em;
+  color: var(--strip-fg);
+  transition: color 0.6s;
+}
+
+.strip-inner .sa { color: var(--red); margin: 0 1.8rem; }
+
+/* ═══════════════════════════════════════════════
+   SCROLL SHOWCASE — CINEMATIC PINNED SECTION
+═══════════════════════════════════════════════ */
+#showcase-track {
+  /* 5 panels × 100vh height for scroll travel */
+  height: 500vh;
+  position: relative;
+}
+
+#showcase-sticky {
+  position: sticky; top: 0;
+  height: 100vh; overflow: hidden;
+  display: flex; align-items: center;
+  border-top: 1px solid var(--border-r);
+  transition: border-color 0.6s;
+}
+
+/* Background panels that slide */
+.sc-bg-panels {
+  position: absolute; inset: 0;
+  display: flex;
+}
+
+.sc-bg-panel {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.8s;
+}
+
+.sc-bg-panel.active { opacity: 1; }
+
+.sc-bg-panel-1 {
+  background:
+    linear-gradient(135deg, rgba(200,0,26,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 70% at 80% 50%, rgba(200,0,26,0.06) 0%, transparent 70%);
+}
+
+.sc-bg-panel-2 {
+  background:
+    linear-gradient(225deg, rgba(200,0,26,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(200,0,26,0.04) 0%, transparent 70%);
+}
+
+.sc-bg-panel-3 {
+  background:
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(200,0,26,0.05) 0%, transparent 70%);
+}
+
+/* Progress bar */
+.sc-progress {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--border);
+  z-index: 10; transition: background 0.6s;
+}
+.sc-progress-fill {
+  height: 100%; background: var(--red);
+  width: 0%; transition: width 0.1s linear;
+}
+
+/* Section label */
+.sc-label {
+  position: absolute; top: 6rem; left: 3rem;
+  font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.4em; color: var(--red);
+  z-index: 10;
+}
+
+/* Panel counter */
+.sc-counter {
+  position: absolute; bottom: 3rem; right: 3rem;
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.3em; color: var(--fg-dimmer);
+  z-index: 10; transition: color 0.6s;
+}
+
+/* The actual content panels */
+.sc-panels {
+  position: relative; z-index: 5;
+  width: 100%; padding: 0 3rem;
+}
+
+.sc-panel {
+  position: absolute; inset: 0;
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  pointer-events: none;
+}
+
+.sc-panel.visible {
+  opacity: 1; transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Panel 1: Giant title reveal */
+.sc-panel-1 { justify-content: flex-start; align-items: flex-end; padding-bottom: 5rem; }
+
+.sc-p1-eyebrow {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.4em; color: var(--red);
+  margin-bottom: 1.5rem;
+}
+
+.sc-p1-title {
+  font-family: var(--display);
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.88; color: var(--fg);
+  transition: color 0.6s;
+}
+
+.sc-p1-sub {
+  margin-top: 2rem;
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.2em; color: var(--fg-dim);
+  display: flex; gap: 1.5rem;
+  transition: color 0.6s;
+}
+
+/* Panel 2: Pull quote — full screen text */
+.sc-panel-2 { justify-content: center; align-items: center; text-align: center; flex-direction: column; gap: 2rem; }
+
+.sc-p2-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  line-height: 1.3; color: var(--fg);
+  max-width: 900px; font-style: italic;
+  transition: color 0.6s;
+}
+
+.sc-p2-quote .qmark { color: var(--red); font-style: normal; font-size: 1.4em; line-height: 0; }
+
+.sc-p2-attr {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.3em; color: var(--fg-dim);
+  text-transform: uppercase;
+}
+
+/* Panel 3: Excerpt — left column layout */
+.sc-panel-3 { flex-direction: column; align-items: flex-start; gap: 3rem; }
+
+.sc-p3-num {
+  font-family: var(--display); font-size: 8rem;
+  color: var(--border-r); line-height: 1;
+  user-select: none; transition: color 0.6s;
+}
+
+.sc-p3-body { max-width: 680px; }
+
+.sc-p3-title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--fg); margin-bottom: 1.5rem;
+  transition: color 0.6s;
+}
+
+.sc-p3-text {
+  font-family: var(--body-mono); font-size: 0.68rem;
+  line-height: 2.1; color: var(--fg-dim);
+  transition: color 0.6s;
+}
+
+/* Panel 4: Tags / metadata explosion */
+.sc-panel-4 { justify-content: center; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+
+.sc-tag-big {
+  font-family: var(--display);
+  letter-spacing: 0.1em;
+  color: var(--fg);
+  transition: color 0.3s, transform 0.3s;
+  cursor: default;
+}
+
+.sc-tag-big:hover { color: var(--red); transform: scale(1.05); }
+
+.sc-tag-big.sz1 { font-size: clamp(2rem, 5vw, 4rem); }
+.sc-tag-big.sz2 { font-size: clamp(1.2rem, 3vw, 2.5rem); color: var(--fg-dim); }
+.sc-tag-big.sz3 { font-size: clamp(1rem, 2vw, 1.8rem); color: var(--fg-dimmer); }
+.sc-tag-big.red { color: var(--red); }
+
+/* Panel 5: CTA — read the essay */
+.sc-panel-5 {
+  justify-content: center; align-items: center;
+  flex-direction: column; gap: 2.5rem; text-align: center;
+}
+
+.sc-p5-pre {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.4em; color: var(--red);
+}
+
+.sc-p5-title {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: var(--fg); letter-spacing: 0.05em;
+  transition: color 0.6s;
+}
+
+.sc-cta {
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  padding: 0.85rem 2.5rem; background: none;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: color 0.3s;
+}
+.sc-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--red); transform: translateX(-101%);
+  transition: transform 0.35s var(--ease-out);
+}
+.sc-cta:hover { color: #fff; }
+.sc-cta:hover::before { transform: translateX(0); }
+.sc-cta span { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════════
+   ESSAYS LIST
+═══════════════════════════════════════════════ */
+#essays {
+  padding: 8rem 3rem;
+}
+
+.section-eyebrow {
+  font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.4em; color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1; letter-spacing: 0.05em;
+  color: var(--fg); transition: color 0.6s;
+}
+
+.essays-head {
+  display: flex; justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2rem; margin-bottom: 0;
+  transition: border-color 0.6s;
+}
+
+.essays-count {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.2em; color: var(--fg-dim);
+}
+
+/* Essay row */
+.essay-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 40px;
+  gap: 2rem; align-items: start;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer; position: relative;
+  opacity: 0; transform: translateY(20px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out),
+    border-color 0.6s;
+}
+
+.essay-row.revealed { opacity: 1; transform: translateY(0); }
+
+.essay-row::before {
+  content: ''; position: absolute;
+  left: -3rem; right: -3rem; top: 0; bottom: 0;
+  background: var(--glow); opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.essay-row:hover::before { opacity: 1; }
+.essay-row:hover .essay-num { color: var(--red); }
+.essay-row:hover .essay-t { color: var(--red); }
+.essay-row:hover .essay-arrow { transform: translateX(5px); color: var(--red); }
+
+.essay-num {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.2em; color: var(--fg-dimmer);
+  padding-top: 0.4rem;
+  transition: color 0.25s;
+}
+
+.essay-body { min-width: 0; }
+
+.essay-tags { display: flex; gap: 0.5rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
+
+.etag {
+  font-family: var(--mono); font-size: 0.48rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--red); border: 1px solid var(--red-dim);
+  padding: 0.18rem 0.5rem;
+}
+
+.etag.lt { color: var(--fg-dim); border-color: var(--fg-dimmer); }
+
+.essay-t {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  line-height: 1.2; color: var(--fg);
+  display: block; margin-bottom: 0.7rem;
+  transition: color 0.25s;
+}
+
+.essay-x {
+  font-family: var(--body-mono); font-size: 0.63rem;
+  line-height: 1.9; color: var(--fg-dim);
+  display: block; max-width: 580px;
+  transition: color 0.6s;
+}
+
+.essay-meta {
+  font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.15em; color: var(--fg-dimmer);
+  margin-top: 0.8rem;
+}
+
+.essay-arrow {
+  font-size: 1.1rem; color: var(--fg-dimmer);
+  align-self: center;
+  transition: transform 0.25s, color 0.25s;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  padding: 4rem 3rem 3rem;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-end;
+  transition: border-color 0.6s;
+}
+
+.footer-logo {
+  font-family: var(--display); font-size: 4rem;
+  letter-spacing: 0.2em; color: var(--fg-dimmer);
+  opacity: 0.3;
+}
+
+.footer-info {
+  font-family: var(--mono); font-size: 0.53rem;
+  letter-spacing: 0.2em; color: var(--fg-dim);
+  text-align: right; line-height: 2.3;
+  transition: color 0.6s;
+}
+.footer-info a { color: var(--red); text-decoration: none; }
+
+/* ═══════════════════════════════════════════════
+   LANGUAGE SWITCH
+═══════════════════════════════════════════════ */
+[data-es] { display: none !important; }
+body.es [data-en] { display: none !important; }
+body.es [data-es] { display: revert !important; }
+
+/* ═══════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes charIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes g1 {
+  0%,88%,100% { transform: translate(0); opacity: 0; }
+  90% { transform: translate(-4px,0); opacity: 0.7; }
+  92% { transform: translate(4px,0); opacity: 0; }
+  94% { transform: translate(-2px,0); opacity: 0.5; }
+}
+
+@keyframes g2 {
+  0%,83%,100% { transform: translate(0); opacity: 0; }
+  85% { transform: translate(4px,0); opacity: 0.3; }
+  87% { transform: translate(-4px,0); opacity: 0; }
+}
+
+@keyframes flicker {
+  0%,93%,100% { opacity: 1; }
+  94% { opacity: 0.5; }
+  95% { opacity: 1; }
+  97% { opacity: 0.3; }
+  98% { opacity: 1; }
+}
+
+@keyframes pulse-line {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.1; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 1.5rem 4rem; }
+  #essays { padding: 5rem 1.5rem; }
+  .essays-head { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  .essay-row { grid-template-columns: 50px 1fr; }
+  .essay-arrow { display: none; }
+  footer { flex-direction: column; gap: 2rem; align-items: flex-start; }
+  .footer-info { text-align: left; }
+  .sc-panel { padding: 0 1.5rem; }
+  .sc-label { left: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ INTRO ══════════════════════════════════════ -->
+<div id="intro">
+  <div class="intro-eyebrow">
+    <span data-en>// Theoretical Hub — Utrecht, NL</span>
+    <span data-es>// Hub Teórico — Utrecht, NL</span>
+  </div>
+  <div class="intro-logo">
+    SPECULATIVE<br><span class="ir">WARFARE</span>
+  </div>
+  <div class="intro-line"></div>
+  <div class="enter-zone">
+    <button class="enter-btn" onclick="enter()">
+      <span data-en>ENTER THE ARCHIVE</span>
+      <span data-es>ENTRAR AL ARCHIVO</span>
+    </button>
+    <div class="audio-note">
+      <span data-en>// Generative ambient sound · Dark/Light mode · Bilingual</span>
+      <span data-es>// Sonido ambiental generativo · Modo oscuro/claro · Bilingüe</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VISUALIZER ══════════════════════════════════ -->
+<div id="visualizer"></div>
+
+<!-- ══ NAV ════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">SW<em>_</em></a>
+  <ul class="nav-links">
+    <li><a href="#showcase-track" data-en>Featured</a><a href="#showcase-track" data-es>Destacado</a></li>
+    <li><a href="#essays" data-en>Essays</a><a href="#essays" data-es>Ensayos</a></li>
+    <li><a href="#" data-en>About</a><a href="#" data-es>Acerca de</a></li>
+  </ul>
+  <div class="nav-r">
+    <div class="ctrl-group">
+      <button class="icon-btn" id="audio-btn" onclick="toggleAudio()" title="Sound">♪</button>
+      <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" title="Theme">◑</button>
+    </div>
+    <div class="lang-wrap">
+      <button class="lang-btn on" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"   onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-tag" id="hero-tag">
+    <span data-en>// THEORETICAL HUB — EST. 2025 — UTRECHT, NL</span>
+    <span data-es>// HUB TEÓRICO — EST. 2025 — UTRECHT, NL</span>
+  </div>
+
+  <h1 class="hero-title" id="hero-title">
+    <span class="title-line">
+      <span class="glitch-wrap" data-text="SPECULATIVE" id="word1">SPECULATIVE</span>
+    </span>
+    <span class="title-line" id="word2">WARFARE</span>
+  </h1>
+
+  <div class="hero-sub">
+    <p class="hero-desc">
+      <span data-en>Essays · Analysis · Theory · Art<br>Where critical thought meets<br>the architecture of conflict.</span>
+      <span data-es>Ensayos · Análisis · Teoría · Arte<br>Donde el pensamiento crítico se encuentra<br>con la arquitectura del conflicto.</span>
+    </p>
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      <span data-en>scroll</span>
+      <span data-es>bajar</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE STRIP ══════════════════════════════ -->
+<div class="strip">
+  <div class="strip-inner">
+    SPECULATIVE WARFARE <span class="sa">✦</span> THEORY <span class="sa">✦</span>
+    CONFLICT <span class="sa">✦</span> ANALYSIS <span class="sa">✦</span> ART <span class="sa">✦</span>
+    GUERRA ESPECULATIVA <span class="sa">✦</span> TEORÍA <span class="sa">✦</span>
+    CONFLICTO <span class="sa">✦</span> ANÁLISIS <span class="sa">✦</span> ARTE <span class="sa">✦</span>
+    SPECULATIVE WARFARE <span class="sa">✦</span> THEORY <span class="sa">✦</span>
+    CONFLICT <span class="sa">✦</span> ANALYSIS <span class="sa">✦</span> ART <span class="sa">✦</span>
+    GUERRA ESPECULATIVA <span class="sa">✦</span> TEORÍA <span class="sa">✦</span>
+    CONFLICTO <span class="sa">✦</span> ANÁLISIS <span class="sa">✦</span> ARTE <span class="sa">✦</span>
+  </div>
+</div>
+
+<!-- ══ SCROLL SHOWCASE ════════════════════════════ -->
+<div id="showcase-track">
+  <div id="showcase-sticky">
+
+    <!-- Background atmosphere panels -->
+    <div class="sc-bg-panels">
+      <div class="sc-bg-panel sc-bg-panel-1 active" id="bg1"></div>
+      <div class="sc-bg-panel sc-bg-panel-2" id="bg2"></div>
+      <div class="sc-bg-panel sc-bg-panel-3" id="bg3"></div>
+    </div>
+
+    <!-- Top progress bar -->
+    <div class="sc-progress"><div class="sc-progress-fill" id="sc-fill"></div></div>
+
+    <!-- Section label -->
+    <div class="sc-label">
+      <span data-en>// 001 — FEATURED ESSAY</span>
+      <span data-es>// 001 — ENSAYO DESTACADO</span>
+    </div>
+
+    <!-- Panel counter -->
+    <div class="sc-counter" id="sc-counter">01 / 05</div>
+
+    <!-- Panel 1: Title reveal -->
+    <div class="sc-panel sc-panel-1 visible" id="sp1">
+      <div>
+        <div class="sc-p1-eyebrow">
+          <span data-en>// FEATURED ESSAY — THEORY / GEOPOLITICS</span>
+          <span data-es>// ENSAYO DESTACADO — TEORÍA / GEOPOLÍTICA</span>
+        </div>
+        <div class="sc-p1-title">
+          <span data-en>On the Grammar<br>of Contemporary<br>Warfare</span>
+          <span data-es>Sobre la Gramática<br>de la Guerra<br>Contemporánea</span>
+        </div>
+        <div class="sc-p1-sub">
+          <span>Feb 2025</span>
+          <span>·</span>
+          <span data-en>8 min read</span><span data-es>8 min lectura</span>
+          <span>·</span>
+          <span>Theory / Geopolitics</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Pull quote -->
+    <div class="sc-panel sc-panel-2" id="sp2">
+      <blockquote class="sc-p2-quote">
+        <span class="qmark">"</span>
+        <span data-en>To speak of war is already to be implicated in its grammar — a system of signs that naturalizes destruction and renders the body of the other as territory to be seized.</span>
+        <span data-es>Hablar de la guerra es ya estar implicado en su gramática — un sistema de signos que naturaliza la destrucción y convierte el cuerpo del otro en territorio por conquistar.</span>
+        <span class="qmark">"</span>
+      </blockquote>
+      <div class="sc-p2-attr">— Speculative Warfare</div>
+    </div>
+
+    <!-- Panel 3: Excerpt -->
+    <div class="sc-panel sc-panel-3" id="sp3">
+      <div class="sc-p3-num">¶</div>
+      <div class="sc-p3-body">
+        <div class="sc-p3-title">
+          <span data-en>What does it mean to theorize violence?</span>
+          <span data-es>¿Qué significa teorizar la violencia?</span>
+        </div>
+        <p class="sc-p3-text">
+          <span data-en>This essay interrogates the conceptual vocabulary we inherit when we speak of war — and what remains unspeakable. The language of strategy, of collateral damage, of theatre — each term is a political act. Each metaphor a choice.</span>
+          <span data-es>Este ensayo interroga el vocabulario conceptual que heredamos cuando hablamos de guerra — y lo que permanece indecible. El lenguaje de la estrategia, del daño colateral, del teatro — cada término es un acto político. Cada metáfora, una elección.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Panel 4: Theme cloud -->
+    <div class="sc-panel sc-panel-4" id="sp4">
+      <span class="sc-tag-big sz1 red" data-en>WARFARE</span>
+      <span class="sc-tag-big sz1 red" data-es>GUERRA</span>
+      <span class="sc-tag-big sz1" data-en>THEORY</span>
+      <span class="sc-tag-big sz1" data-es>TEORÍA</span>
+      <span class="sc-tag-big sz2">FOUCAULT</span>
+      <span class="sc-tag-big sz2" data-en>LANGUAGE</span>
+      <span class="sc-tag-big sz2" data-es>LENGUAJE</span>
+      <span class="sc-tag-big sz2" data-en>VIOLENCE</span>
+      <span class="sc-tag-big sz2" data-es>VIOLENCIA</span>
+      <span class="sc-tag-big sz3">CLAUSEWITZ</span>
+      <span class="sc-tag-big sz3" data-en>STRATEGY</span>
+      <span class="sc-tag-big sz3" data-es>ESTRATEGIA</span>
+      <span class="sc-tag-big sz3">BAUDRILLARD</span>
+      <span class="sc-tag-big sz3" data-en>SPECTACLE</span>
+      <span class="sc-tag-big sz3" data-es>ESPECTÁCULO</span>
+    </div>
+
+    <!-- Panel 5: CTA -->
+    <div class="sc-panel sc-panel-5" id="sp5">
+      <div class="sc-p5-pre">
+        <span data-en>// CONTINUE READING</span>
+        <span data-es>// CONTINUAR LEYENDO</span>
+      </div>
+      <div class="sc-p5-title">
+        <span data-en>On the Grammar of<br>Contemporary Warfare</span>
+        <span data-es>Sobre la Gramática de<br>la Guerra Contemporánea</span>
+      </div>
+      <button class="sc-cta">
+        <span data-en>READ THE ESSAY →</span>
+        <span data-es>LEER EL ENSAYO →</span>
+      </button>
+    </div>
+
+  </div><!-- /#showcase-sticky -->
+</div><!-- /#showcase-track -->
+
+<!-- ══ ESSAYS LIST ════════════════════════════════ -->
+<section id="essays">
+  <div class="essays-head">
+    <div>
+      <div class="section-eyebrow">
+        <span data-en>// 002 — ALL DISPATCHES</span>
+        <span data-es>// 002 — TODOS LOS DESPACHOS</span>
+      </div>
+      <h2 class="section-title">
+        <span data-en>ESSAYS</span>
+        <span data-es>ENSAYOS</span>
+      </h2>
+    </div>
+    <div class="essays-count">03 <span data-en>TEXTS</span><span data-es>TEXTOS</span></div>
+  </div>
+
+  <!-- Essay 1 -->
+  <div class="essay-row">
+    <div class="essay-num">01 —</div>
+    <div class="essay-body">
+      <div class="essay-tags">
+        <span class="etag">Theory</span>
+        <span class="etag">Geopolitics</span>
+        <span class="etag lt">EN</span>
+      </div>
+      <span class="essay-t" data-en>On the Grammar of Contemporary Warfare</span>
+      <span class="essay-t" data-es>Sobre la gramática de la guerra contemporánea</span>
+      <span class="essay-x" data-en>What does it mean to theorize violence from a position of critical distance? This essay interrogates the conceptual vocabulary we inherit when we speak of war — and what remains unspeakable.</span>
+      <span class="essay-x" data-es>¿Qué significa teorizar la violencia desde una posición de distancia crítica? Este ensayo interroga el vocabulario conceptual que heredamos cuando hablamos de guerra — y lo que permanece indecible.</span>
+      <div class="essay-meta">— Feb 2025 &nbsp;·&nbsp; 8 min read</div>
+    </div>
+    <div class="essay-arrow">→</div>
+  </div>
+
+  <!-- Essay 2 -->
+  <div class="essay-row">
+    <div class="essay-num">02 —</div>
+    <div class="essay-body">
+      <div class="essay-tags">
+        <span class="etag">Media</span>
+        <span class="etag">Speculation</span>
+        <span class="etag lt">ES</span>
+      </div>
+      <span class="essay-t" data-en>Spectral Economies: Media, Conflict, and the Image</span>
+      <span class="essay-t" data-es>Economías espectrales: medios, conflicto e imagen</span>
+      <span class="essay-x" data-en>The image of war precedes the war itself. A meditation on how media constructs the temporality of conflict, and the political stakes of representation.</span>
+      <span class="essay-x" data-es>La imagen de la guerra precede a la guerra misma. Una meditación sobre cómo los medios construyen la temporalidad del conflicto y las apuestas políticas de la representación.</span>
+      <div class="essay-meta">— Jan 2025 &nbsp;·&nbsp; 12 min read</div>
+    </div>
+    <div class="essay-arrow">→</div>
+  </div>
+
+  <!-- Essay 3 -->
+  <div class="essay-row">
+    <div class="essay-num">03 —</div>
+    <div class="essay-body">
+      <div class="essay-tags">
+        <span class="etag">Philosophy</span>
+        <span class="etag">Architecture</span>
+        <span class="etag lt">EN / ES</span>
+      </div>
+      <span class="essay-t" data-en>Ruins as Method: Notes Toward a Speculative Urbanism</span>
+      <span class="essay-t" data-es>La ruina como método: notas hacia un urbanismo especulativo</span>
+      <span class="essay-x" data-en>What architectural and philosophical lessons can be drawn from spaces of destruction? An essay exploring ruins not as endpoints, but as generative theoretical sites.</span>
+      <span class="essay-x" data-es>¿Qué lecciones arquitectónicas y filosóficas pueden extraerse de los espacios de destrucción? Un ensayo que explora las ruinas no como puntos finales, sino como sitios teóricos generativos.</span>
+      <div class="essay-meta">— Dec 2024 &nbsp;·&nbsp; 10 min read</div>
+    </div>
+    <div class="essay-arrow">→</div>
+  </div>
+
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">SW</div>
+  <div class="footer-info">
+    <span data-en>SPECULATIVE WARFARE<br>Utrecht, Netherlands<br><a href="#">Substack</a> &nbsp;·&nbsp; <a href="#">Contact</a></span>
+    <span data-es>GUERRA ESPECULATIVA<br>Utrecht, Países Bajos<br><a href="#">Substack</a> &nbsp;·&nbsp; <a href="#">Contacto</a></span>
+  </div>
+</footer>
+
+<!-- ══ JS ══════════════════════════════════════════ -->
+<script>
+/* ── LANGUAGE ─────────────────────────────────── */
+function setLang(lang) {
+  document.body.classList.toggle('es', lang === 'es');
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('on'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('on');
+}
+
+/* ── THEME ────────────────────────────────────── */
+let dark = true;
+function toggleTheme() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('theme-btn').textContent = dark ? '◑' : '○';
+}
+
+/* ── HERO CHAR ANIMATION ─────────────────────── */
+function animateChars() {
+  const words = ['word1', 'word2'];
+  let delay = 0.5;
+  words.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const text = el.textContent;
+    el.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+      span.style.animationDelay = `${delay + i * 0.04}s`;
+      el.appendChild(span);
+    }
+    delay += text.length * 0.04 + 0.15;
+  });
+}
+
+/* ── SCROLL SHOWCASE ENGINE ──────────────────── */
+const panels = ['sp1','sp2','sp3','sp4','sp5'];
+const bgs    = ['bg1','bg2','bg3'];
+let lastPanel = 0;
+
+function updateShowcase() {
+  const track  = document.getElementById('showcase-track');
+  const sticky = document.getElementById('showcase-sticky');
+  const rect   = track.getBoundingClientRect();
+  const trackH = track.offsetHeight - window.innerHeight;
+  const scrolled = Math.max(0, -rect.top);
+  const progress = Math.min(1, scrolled / trackH);
+
+  // Progress bar
+  document.getElementById('sc-fill').style.width = (progress * 100) + '%';
+
+  // Which panel (0–4)
+  const panelIndex = Math.min(panels.length - 1, Math.floor(progress * panels.length));
+
+  if (panelIndex !== lastPanel) {
+    // Hide old
+    document.getElementById(panels[lastPanel]).classList.remove('visible');
+    // Show new
+    document.getElementById(panels[panelIndex]).classList.add('visible');
+    // Update counter
+    document.getElementById('sc-counter').textContent =
+      String(panelIndex + 1).padStart(2,'0') + ' / 0' + panels.length;
+    // Swap bg
+    bgs.forEach((b,i) => {
+      document.getElementById(b).classList.toggle('active', i === Math.floor(panelIndex / 2));
+    });
+    lastPanel = panelIndex;
+  }
+}
+
+window.addEventListener('scroll', updateShowcase, { passive: true });
+
+/* ── ESSAY SCROLL REVEAL ─────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('revealed');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.essay-row').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.1}s`;
+  io.observe(el);
+});
+
+/* ── GENERATIVE AUDIO ──────────────────────────
+   5-layer Autechre-inspired soundscape:
+   Sub drone · Detuned pads · Grain noise ·
+   Glitch sequencer · Melodic pulse
+─────────────────────────────────────────────── */
+let ctx, master, playing = false, vizTimer;
+let glitchNotes = [38,45,57,51,64,38,76,43];
+let melNotes    = [38,57,45,76,57,51,64,38];
+let glitchStep  = 0, melStep = 0;
+
+function buildAudio() {
+  ctx    = new (window.AudioContext || window.webkitAudioContext)();
+  master = ctx.createGain();
+  master.gain.setValueAtTime(0, ctx.currentTime);
+  master.connect(ctx.destination);
+
+  // Sub
+  const sub = ctx.createOscillator();
+  const subF = ctx.createBiquadFilter();
+  const subG = ctx.createGain();
+  sub.type = 'sine'; sub.frequency.value = 38;
+  subF.type = 'lowpass'; subF.frequency.value = 110;
+  subG.gain.value = 1.0;
+  sub.connect(subF); subF.connect(subG); subG.connect(master);
+  sub.start();
+
+  // Pads
+  [[76,0,0.10],[76,14,0.07],[114,-9,0.055],[152,6,0.045],[57,0,0.06]].forEach(([f,d,g]) => {
+    const o = ctx.createOscillator();
+    const og = ctx.createGain();
+    const of = ctx.createBiquadFilter();
+    const lfo = ctx.createOscillator();
+    const lfog = ctx.createGain();
+    o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = d;
+    of.type = 'lowpass'; of.frequency.value = 550; of.Q.value = 2.5;
+    og.gain.value = g;
+    lfo.frequency.value = 0.05 + Math.random() * 0.1;
+    lfog.gain.value = 180;
+    lfo.connect(lfog); lfog.connect(of.frequency);
+    o.connect(of); of.connect(og); og.connect(master);
+    o.start(); lfo.start();
+  });
+
+  // Noise grain
+  const buf  = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+  const d    = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const ns   = ctx.createBufferSource();
+  ns.buffer  = buf; ns.loop = true;
+  const nf   = ctx.createBiquadFilter();
+  nf.type    = 'bandpass'; nf.frequency.value = 2400; nf.Q.value = 0.35;
+  const ng   = ctx.createGain(); ng.gain.value = 0.016;
+  ns.connect(nf); nf.connect(ng); ng.connect(master);
+  ns.start();
+
+  // Glitch ticker
+  function glitch() {
+    if (!playing) return;
+    const now = ctx.currentTime;
+    if (Math.random() > 0.3) {
+      const o   = ctx.createOscillator();
+      const env = ctx.createGain();
+      const f   = ctx.createBiquadFilter();
+      const r   = Math.random();
+      o.type = r > 0.65 ? 'square' : 'sawtooth';
+      o.frequency.value = glitchNotes[glitchStep % glitchNotes.length];
+      f.type = 'bandpass'; f.frequency.value = 800 + Math.random() * 1400; f.Q.value = 4 + Math.random() * 8;
+      const dur = 0.04 + Math.random() * 0.2;
+      env.gain.setValueAtTime(0.25 + r * 0.15, now);
+      env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+      o.connect(f); f.connect(env); env.connect(master);
+      o.start(now); o.stop(now + dur);
+    }
+    glitchStep++;
+    setTimeout(glitch, (0.1 + Math.random() * 0.3) * 1000);
+  }
+  setTimeout(glitch, 1500);
+
+  // Melodic pulse
+  function melody() {
+    if (!playing) return;
+    const now = ctx.currentTime;
+    const o   = ctx.createOscillator();
+    const env = ctx.createGain();
+    const f   = ctx.createBiquadFilter();
+    o.type = 'triangle'; o.frequency.value = melNotes[melStep % melNotes.length];
+    f.type = 'lowpass'; f.frequency.value = 380;
+    env.gain.setValueAtTime(0.16, now);
+    env.gain.exponentialRampToValueAtTime(0.001, now + 3);
+    o.connect(f); f.connect(env); env.connect(master);
+    o.start(now); o.stop(now + 3.2);
+    melStep++;
+    setTimeout(melody, (1.6 + Math.random() * 1.8) * 1000);
+  }
+  setTimeout(melody, 2800);
+}
+
+function toggleAudio() {
+  const btn = document.getElementById('audio-btn');
+  const viz = document.getElementById('visualizer');
+  if (!playing) {
+    if (!ctx) buildAudio();
+    if (ctx.state === 'suspended') ctx.resume();
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.linearRampToValueAtTime(0.55, ctx.currentTime + 1.8);
+    playing = true;
+    btn.classList.add('on');
+    viz.classList.add('on');
+    startViz();
+  } else {
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.5);
+    playing = false;
+    btn.classList.remove('on');
+    viz.classList.remove('on');
+    clearInterval(vizTimer);
+  }
+}
+
+/* ── VISUALIZER ──────────────────────────────── */
+(function buildViz() {
+  const v = document.getElementById('visualizer');
+  for (let i = 0; i < 90; i++) {
+    const b = document.createElement('div'); b.className = 'vb'; v.appendChild(b);
+  }
+})();
+
+function startViz() {
+  const bars = document.querySelectorAll('.vb');
+  let ph = 0;
+  vizTimer = setInterval(() => {
+    ph += 0.07;
+    bars.forEach((b, i) => {
+      const v = Math.abs(
+        Math.sin(ph + i * 0.18) * 0.5 +
+        Math.sin(ph * 1.6 + i * 0.12) * 0.3 +
+        Math.random() * 0.2
+      );
+      b.style.height = `${2 + v * 22}px`;
+    });
+  }, 55);
+}
+
+/* ── ENTER ───────────────────────────────────── */
+function enter() {
+  document.getElementById('intro').classList.add('gone');
+  animateChars();
+  // Auto-start audio
+  buildAudio();
+  playing = true;
+  master.gain.linearRampToValueAtTime(0.55, ctx.currentTime + 2);
+  document.getElementById('audio-btn').classList.add('on');
+  document.getElementById('visualizer').classList.add('on');
+  startViz();
+}
+</script>
+</body>
+</html>
