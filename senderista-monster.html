@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   THEME TOKENS
-═══════════════════════════════════════════════ */
 :root {
   --red:        #c8001a;
   --red-dim:    #5a000c;
@@ -17,7 +14,6 @@
   --display:    'Bebas Neue', sans-serif;
   --serif:      'DM Serif Display', serif;
   --body-mono:  'Space Mono', monospace;
-  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] {
@@ -63,9 +59,6 @@ body::before {
   pointer-events: none; z-index: 9999;
 }
 
-/* ═══════════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════════ */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
   padding: 1.2rem 3rem;
@@ -83,7 +76,6 @@ nav {
   letter-spacing: 0.15em;
   color: var(--fg);
   text-decoration: none;
-  transition: color 0.6s;
 }
 
 .nav-logo span { color: var(--red); }
@@ -112,16 +104,12 @@ nav {
 }
 .theme-btn:hover { color: var(--red); border-color: var(--red-dim); }
 
-/* ═══════════════════════════════════════════════
-   ESSAY LAYOUT
-═══════════════════════════════════════════════ */
 .essay-wrapper {
   max-width: 740px;
   margin: 0 auto;
   padding: 9rem 2rem 8rem;
 }
 
-/* Header */
 .essay-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border-r); padding-bottom: 3rem; }
 
 .essay-archive-tag {
@@ -183,7 +171,6 @@ nav {
   letter-spacing: 0.1em;
 }
 
-/* Abstract */
 .essay-abstract {
   background: var(--bg2);
   border-left: 2px solid var(--red);
@@ -226,7 +213,6 @@ nav {
   font-size: 0.45rem;
 }
 
-/* Body text */
 .essay-body { font-size: clamp(1rem, 2vw, 1.1rem); line-height: 1.95; color: var(--fg); }
 
 .essay-body h2 {
@@ -241,10 +227,9 @@ nav {
 }
 
 .essay-body p { margin-bottom: 1.5em; }
-
 .essay-body em { font-style: italic; }
 
-.essay-body .pull-quote {
+.pull-quote {
   border-left: 2px solid var(--red-dim);
   padding: 1rem 1.5rem;
   margin: 2rem 0;
@@ -253,7 +238,23 @@ nav {
   font-size: 0.95em;
 }
 
-/* Footnotes */
+.epigraph {
+  font-family: var(--body-mono);
+  font-size: 0.58rem;
+  color: var(--fg-dim);
+  font-style: italic;
+  margin-bottom: 3rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.epigraph cite {
+  display: block;
+  margin-top: 0.4rem;
+  font-style: normal;
+  color: var(--fg-dimmer);
+}
+
 .essay-footnotes {
   margin-top: 4rem;
   padding-top: 2rem;
@@ -275,27 +276,18 @@ nav {
   font-size: 0.52rem;
   line-height: 1.9;
   color: var(--fg-dim);
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+  padding-left: 2rem;
   position: relative;
 }
 
-.footnote::before {
-  position: absolute; left: 0;
+.footnote .fn-num {
+  position: absolute;
+  left: 0;
   color: var(--red);
   font-family: var(--mono);
 }
 
-.fn1::before { content: '1.'; }
-.fn2::before { content: '2.'; }
-.fn3::before { content: '3.'; }
-.fn4::before { content: '4.'; }
-.fn5::before { content: '5.'; }
-.fn6::before { content: '6.'; }
-.fn7::before { content: '7.'; }
-.fn8::before { content: '8.'; }
-
-/* References */
 .essay-references {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -322,7 +314,6 @@ nav {
 
 .ref em { font-style: italic; color: var(--fg); }
 
-/* Footer */
 .essay-footer {
   margin-top: 5rem;
   padding-top: 2rem;
@@ -357,6 +348,13 @@ nav {
 
 .back-link:hover { color: var(--red); border-color: var(--red); }
 
+sup {
+  font-family: var(--mono);
+  font-size: 0.5em;
+  color: var(--red);
+  vertical-align: super;
+}
+
 @media (max-width: 768px) {
   nav { padding: 1rem 1.2rem; }
   .essay-wrapper { padding: 7rem 1.2rem 5rem; }
@@ -366,7 +364,6 @@ nav {
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">SW<span>_</span></a>
   <div class="nav-r">
@@ -375,13 +372,11 @@ nav {
   </div>
 </nav>
 
-<!-- ESSAY -->
 <article class="essay-wrapper">
 
-  <!-- HEADER -->
   <header class="essay-header">
     <span class="essay-archive-tag">// F.01 — Founding Document — 2020</span>
-    <h1 class="essay-title">The Senderista Monster in <em>Los rendidos</em> by José Carlos Agüero</h1>
+    <h1 class="essay-title">The senderista monster in <em>Los rendidos</em> by José Carlos Agüero</h1>
     <div class="essay-author">Aaron Isaias Rodríguez Orsi</div>
     <div class="essay-tags-row">
       <span class="etag">Memory</span>
@@ -390,92 +385,125 @@ nav {
       <span class="etag">Post-conflict Peru</span>
       <span class="etag lt">EN</span>
     </div>
-    <div class="essay-meta-row">Published in <em>Hawansuyo</em> (Lima–New York, 2020) &nbsp;·&nbsp; Presented at XXV Colloquium of Literature Students, PUCP</div>
+    <div class="essay-meta-row">Published in <em>Hawansuyo</em> (Lima–New York, 2020) &nbsp;·&nbsp; Presented at XXV Colloquium of Literature Students, PUCP &nbsp;·&nbsp; 45 min read</div>
   </header>
 
-  <!-- ABSTRACT -->
   <div class="essay-abstract">
     <span class="essay-abstract-label">// Abstract</span>
-    <p><em>Los rendidos. Sobre el don de perdonar</em> (2015), by José Carlos Agüero, is a collection of non-fiction texts that reflect upon the "tangled field of memory" on the internal armed conflict (1980–2000), the bloodiest war in Peruvian history. This book proposes a problematization of the established national memory around the conflict, holding a perspective both historical and personal, given that the author's parents were members of the Communist Party of Peru – Shining Path (PCP-SL), extrajudicially executed by members of the Peruvian Armed Forces.</p>
-    <p>From his perspective and as heir to a controversial past, Agüero proposes, among other relevant reflections, the existence of the image of the "senderista monster" in the national imaginary, both as an eternal ghost of terrorism that haunts Peruvian history, and as a political symbol that serves to think national memory, oblivion and the possibility of social and political reconciliation. The purpose of this article is to read <em>Los rendidos</em> from the axis of the senderista monster, in order to establish a position from which to confront the disarticulating terror it arouses, while analyzing the political and symbolic meaning of the ever-present return of the monster in Peruvian memory.</p>
-    <p>In this article it is proposed that at the core of the terror of the monster are the "authentical questions" Agüero poses in his text, a pending discussion about victimhood, responsibility, hegemonic and censored recounts of the conflict, and finally, a reflection on how we have understood and are understanding one of the most complex and scarring periods of our recent history.</p>
-    <div class="essay-keywords"><strong>Keywords:</strong> Peruvian internal armed conflict · terrorist monster · memory · violence · literature</div>
+    <p><em>Los rendidos. Sobre el don de perdonar</em> (2015), by José Carlos Agüero, is a collection of non-fiction texts that reflect upon the "tangled field of memory" on the internal armed conflict (1980–2000), the bloodiest war in Peruvian history. This book proposes a problematization of the established national memory around the conflict, holding a perspective both historical and personal, given that the author's parents were members of the Communist Party of Peru – Shining Path (PCP-SL), extrajudicially executed by members of the Peruvian Armed Forces. From his perspective and as heir to a controversial past, Agüero proposes, among other relevant reflections, the existence of the image of the "senderista monster" in the national imaginary, both as an eternal ghost of terrorism that haunts Peruvian history, and as a political symbol that serves to think national memory, oblivion and the possibility of social and political reconciliation. The purpose of this article is to read <em>Los rendidos</em> from the axis of the senderista monster, in order to establish a position from which to confront the disarticulating terror it arouses, while analyzing the political and symbolic meaning of the ever-present return of the monster in Peruvian memory. In this article it is proposed that at the core of the terror of the monster are the "authentical questions" Agüero poses in his text, a pending discussion about the victimhood, responsibility, hegemonic and censored recounts of the conflict, and finally, a reflection on how we have understood and are understanding one of the most complex and scarring periods of our recent history.</p>
+    <div class="essay-keywords"><strong>Key words:</strong> Peruvian internal armed conflict, terrorist monster, memory, violence, literature.</div>
   </div>
 
-  <!-- BODY -->
   <div class="essay-body">
 
-    <div class="pull-quote">"the making of memory is also the making of silence" — Steve J. Stern</div>
+    <div class="epigraph">
+      "the making of memory is also the making of silence"
+      <cite>Steve J. Stern</cite>
+    </div>
 
     <h2>Introduction</h2>
 
-    <p>The internal armed conflict (1980–2000) was one of the bloodiest and most devastating episodes in Peruvian history. Since the beginning of the period of violence, Peruvian cultural production was motivated by an impulse to record this experience, and these efforts evolved over time, available information and the changing policies of social and symbolic approaches to what happened during this period (Saona, 2008). The novel, particularly, through a rewriting and reconstruction of the past, has dedicated itself to remembering what happened in the conflict from different viewpoints, and with their narrative approaches, authors have sought to update their particular perspective and inscribe it in the present (Cárdenas; Rezende; Sturken cited in Dettleff, 2018). This process of reading and interpreting memory constitutes both a mode of artistic exploration and "a means of political intervention" (Ubilluz, Hibbett &amp; Vich, 2009).</p>
+    <p>The internal armed conflict (1980–2000) was one of the bloodiest and most devastating episodes in Peruvian history.<sup>2</sup> Since the beginning of the period of violence, Peruvian cultural production was motivated by an impulse to record this experience, and these efforts evolved over time, available information and the changing policies of social and symbolic approaches to what happened during this period (Saona, 2008). The novel, particularly, through a rewriting and reconstruction of the past, has dedicated itself to remembering what happened in the conflict from different viewpoints, and with their narrative approaches, authors have sought to update their particular perspective and inscribe it in the present (Cárdenas; Rezende; Sturken cited in Dettleff, 2018). This process of reading and interpreting memory constitutes both a mode of artistic exploration and "a means of political intervention" (Ubilluz, Hibbett &amp; Vich, 2009).</p>
 
-    <p>In Peruvian letters, a "fight against oblivion" was undertaken through the "rescue of memory" (Lillo, 2011: 422). This scenario began transforming, for the first time since the end of the conflict, in 2001, with the appearance of the Truth Commission — later, the Truth and Reconciliation Commission (TRC) — a milestone that revolutionized the way in which cultural production approached the internal armed conflict. In 2003, with the publication of the Final Report (<em>Informe final</em>) of the TRC, the narratives about the conflict began to lean towards the "silenced memories" (Degregori, 2004: 265), that is, the representation of the victims, the recognition of the different types of victims and the realization of the degrees of participation of both Shining Path and the Peruvian State in acts of violence towards these groups. These stories unfold around the need for symbolic reparation in favor of the victimized populations and, in order to obtain reconciliation, these seek to understand what led to the conflict in the first place.</p>
+    <p>In Peruvian letters, a "fight against oblivion" was undertaken through the "rescue of memory" (Lillo, 2011: 422). This scenario began transforming, for the first time since the end of the conflict, in 2001, with the appearance of the Truth Commission –later, the Truth and Reconciliation Commission (TRC)<sup>3</sup>– a milestone that revolutionized the way in which cultural production approached the internal armed conflict. In 2003, with the publication of the Final Report (<em>Informe final</em>) of the TRC, the narratives about the conflict began to lean towards the "silenced memories" (Degregori, 2004: 265), that is, the representation of the victims, the recognition of the different types of victims and the realization of the degrees of participation of both Shining Path and the Peruvian State in acts of violence towards these groups. These stories unfold around the need for symbolic reparation in favor of the victimized populations and, in order to obtain reconciliation, these seek to understand what led to the conflict in the first place.</p>
 
-    <p>Within this corpus, <em>Los rendidos. Sobre el don de perdonar</em> (2015), by José Carlos Agüero, is inscribed and stands out. Agüero's text is a unique object of analysis in the post-conflict narrative, firstly, for its complex and polysemic nature, as it is located in a space between testimony, non-fictional narrative and literary essay. Also, the place of enunciation from which Agüero departs is privileged due to its historical, narrative and ethical complexity: he writes as a survivor of the conflict, as an intergenerational victim of the human rights violations committed during the conflict, and at the same time, as heir and relative of members of the main culprit front of the violence, as the son of <em>senderistas</em> or militants of Shining Path.</p>
+    <p>Within this corpus, <em>Los rendidos. Sobre el don de perdonar</em> (2015)<sup>4</sup>, by José Carlos Agüero, is inscribed and stands out. Agüero's text is a unique object of analysis in the post-conflict narrative, firstly, for its complex and polysemic nature, as it is located in a space between testimony, non-fictional narrative and literary essay. Also, the place of enunciation from which Agüero departs is privileged due to its historical, narrative and ethical complexity: he writes as a survivor of the conflict, as an intergenerational victim of the human rights violations committed during the conflict, and at the same time, as heir and relative of members of the main culprit front of the violence, as the son of <em>senderistas</em> or militants of Shining Path.</p>
 
     <p>Agüero's text starts from the discursive source of the Final Report, and based on this, operating as a "memory device" or an "alternative memory file", it seeks to disseminate, correct, complement and expand the conclusions of the TRC's Report, in order to contribute to the "construction of a new story about Peru" (Vich, 2015: 19). Thus, it fills historical gaps, questions common senses and supports the recommendations of the TRC without losing its own critical voice, introducing stories that had not been fully taken into account in the Final Report, both due to their political implications and their intimate nature (González, 2015: 226). This text is not only relevant for its richness as a testimony, but also because, from its unique position, it dialogues with the common meanings of post-conflict narratives and inserts itself in this ethical discussion from a perspective that had not been considered previously.</p>
 
-    <h2>The Nature of the Author</h2>
+    <h2>The nature of the author</h2>
 
     <p>In the initial chapters of <em>Los rendidos</em>, the author presents himself and refers to his particular condition with the following words:</p>
 
     <div class="pull-quote">I am the son of Shining Path members who died in the 1980s in Lima. They were killed extrajudicially. I never claimed for them. My identity and that of my family were not built from poverty, damage or the search for justice or reparation. Nevertheless, I have lived for a long time looking for a legitimate place to write, to speak and to act in public space. But it has not been and is not easy (2015: 119).</div>
 
-    <p><em>Los rendidos</em> would be the result and fruit of that difficult search by the author for a legitimate place in the public sphere, to grieve, understand and reflect on forgiveness and reconciliation. As "the son of parents who were members of the Communist Party of Peru – Shining Path and who died in that trance, extrajudicially executed" (2015: 13), it is understood that his position and condition is — if only from a testimonial point of view — privileged to address the interstices of the problem about the legacy, inheritance and memory of the conflict.</p>
+    <p><em>Los rendidos</em> would be the result and fruit of that difficult search by the author for a legitimate place in the public sphere, to grieve, understand and reflect on forgiveness and reconciliation. As "the son of parents who were members of the Communist Party of Peru – Shining Path and who died in that trance, extrajudicially executed" (2015: 13), it is understood that his position and condition is –if only from a testimonial point of view– privileged to address the interstices of the problem about the legacy, inheritance and memory of the conflict.</p>
 
-    <p>On the testimonial genre, Laub writes: "There is, in each survivor, an imperative need to tell and thus know one's story, without obstacles from the ghosts of the past against which one has to protect oneself", a process that requires a listener or interlocutor who collaborates with the social recognition of the traumatic event (Laub in Dickson, 2013: 68). The colleagues — or companions — to whom Agüero will make reference throughout his text, serve as the interlocutors of ethical reflections that he raises and carries out from a place of trauma, as they arise in these questions and conspiracies on issues around the armed conflict, the main theme that the text deals with.</p>
+    <p>On the testimonial genre, Laub writes: "There is, in each survivor, an imperative need to tell and thus know one's story, without obstacles from the ghosts of the past against which one has to protect oneself", a process that requires a listener or interlocutor who collaborates with the social recognition of the traumatic event (Laub in Dickson, 2013: 68). The colleagues –or companions–, to whom Agüero will make reference throughout his text, serve as the interlocutors of ethical reflections that he raises and carries out from a place of trauma,<sup>5</sup> as they arise in these questions and conspiracies on issues around the armed conflict, the main theme that the text deals with.</p>
 
-    <p>Through these interlocutors, the author seems to refer to all those in a broad spectrum — academics, researchers and citizens — interested in these reflections and inquiries about "the tangled field of memory" (13). A field that concerns, or at least should concern, all Peruvians.</p>
+    <p>Through these interlocutors, the author seems to refer to all those in a broad spectrum, academics, researchers and citizens, interested in these reflections and inquiries about "the tangled field of memory" (13). A field that concerns, or at least should concern, all Peruvians.</p>
 
-    <p>From this point of view, would we all be Agüero's colleagues? Perhaps to the extent that there is reflection on this matter. There are, along these lines, losses of sense and meaning in the great narratives as a result of "the best intentions" of Agüero's colleagues, who have the purpose of reflecting on memory, demanding justice for the victims of the armed conflict, and contributing to national reparation and reconciliation (2015: 55). This is directly related to Agüero's dual position in his own text, which will return as a theme throughout the book: as a writer and an academic, a position on the basis of which he considers as necessary and urgent the punishment of the two fronts responsible for the violence committed during the internal armed conflict; and as a family member and friend of members of Shining Path, a position that offers him a privileged perspective on this issue, but that is also loaded with stigma, censorship, and the presumption of an "inherited evilness" or lack of partiality with respect to his own story.</p>
+    <p>From this point of view, would we all be Agüero's colleagues? Perhaps to the extent that there is reflection on this matter. There are, along these lines, losses of sense and meaning in the great narratives as a result of "the best intentions" of Agüero's colleagues, who have the purpose of reflecting on memory, demanding justice for the victims of the armed conflict, and contributing to national reparation and reconciliation (2015: 55). This is directly related to Agüero's dual position in his own text, which will return as a theme throughout the book: as a writer and an academic, a position on the basis of which he considers as necessary and urgent the punishment of the two fronts responsible for the violence committed during the internal armed conflict; and as a family member and friend of members of Shining Path, a position that offers him –as mentioned before– a privileged perspective on this issue, but that is also loaded with stigma, censorship, and the presumption of an "inherited evilness" or lack of partiality with respect to his own story.<sup>6</sup></p>
 
-    <p>Following this line, we can infer that at least one of Agüero's intentions when writing <em>Los rendidos</em>, in addition to offering information about his particular position, as a victim among victimizers, is to introduce a critical vision of the armed conflict that has not been investigated by the TRC and that has been historically censored, both in political and academic spheres, both by post-conflict authorities and by the "colleagues" to whom Agüero refers in his text. There are multiple innovative and relevant reflections that Agüero will propose throughout <em>Los rendidos</em>. However, this article will deal particularly with one of the author's most concrete proposals, both as a literary image and as an ethical-political reflection on memory: that of the <em>senderista</em> monster.</p>
+    <p>Following this line, we can infer that at least one of Agüero's intentions when writing <em>Los rendidos</em>, in addition to offering information about his particular position, as a victim among victimizers, is to introduce a critical vision of the armed conflict that has not been investigated by the TRC and that has been historically censored, both in political and academic spheres, both by post-conflict authorities and political and by the "colleagues" to whom Agüero refers in his text. There are multiple innovative and relevant reflections that Agüero will propose throughout <em>Los rendidos</em>. However, this article will deal particularly with one of the author's most concrete proposals, both as a literary image and as an ethical-political reflection on memory: that of the <em>senderista</em> monster. Through a critical reading of relevant extracts from Agüero's text, the monster will be described, it will be analyzed as an aesthetic chimera in the narrative about the conflict and emphasis, in order to shed light on its ethical, political and symbolic implications for the memory of the country from a reconciliation perspective.</p>
 
-    <h2>The Return of the Senderista Monster and the Authentical Questions</h2>
+    <h2>The return of the senderista monster and the authentical questions</h2>
 
     <p>In chapter 16 of <em>Los rendidos</em>, Agüero proposes what we could consider a first approach to the concept of the <em>senderista</em> monster, with the following words:</p>
 
     <div class="pull-quote">When colleagues, with the best of intentions, talk about Shining Path's monstrosities, I agree. But I know at the same time that they are talking about my family. And of many friends whom I saw live to the fullest and then die. It's hard for me to remember them monstrous. But yes, they committed atrocities and justified them (55).</div>
 
-    <p>The monster is, as is inferred from this quote, the person who justifies the atrocities they have committed. Later in the same chapter the author announces a position of knowledge regarding a meaning lost in the great narratives and fears regarding the figure of the monster (2015: 55). To illustrate this knowledge about the possibility of a lost, new and hidden meaning about the <em>senderista</em> monster, Agüero uses the following, very eloquent image: "This monster actually hides a monster with a thousand heads or an entire fauna or bestiary. So many <em>senderistas</em> with their own <em>senderista</em> ways, in tension with institutional Shining Path" (2015: 56). The <em>senderista</em> monster is in reality, then, a decoy that conceals monstrous multiplicities, almost elusive, inapprehensible. This leads Agüero's colleagues to fear the constant possibility of the return of the <em>senderista</em> monster.</p>
+    <p>The monster is, as is inferred from this quote, the person who justifies the atrocities they have committed. Later in the same chapter the author announces a position of knowledge regarding a meaning lost in the great narratives and fears regarding the figure of the monster (2015: 55). To illustrate this knowledge about the possibility of a lost, new and hidden meaning about the <em>senderista</em> monster, Agüero uses the following, very eloquent image: "This monster actually hides a monster with a thousand heads or an entire fauna or bestiary. So many <em>senderistas</em> with their own <em>senderista</em> ways, in tension with institutional Shining Path" (2015: 56). The <em>senderista</em> monster is in reality, then, a decoy that conceals monstrous multiplicities, almost elusive, inapprehensible. This leads Agüero's colleagues to fear the constant possibility of the return of the <em>senderista</em> monster…</p>
 
-    <div class="pull-quote">(...) other colleagues point out with alarm that something must be done to arrest and monitor them when they are released from prison (...) I know enough of some of those who are released from prison to understand that they will organize and seek to have some new political role (55).</div>
+    <div class="pull-quote">(…) other colleagues point out with alarm that something must be done to arrest and monitor them when they are released from prison (...) I know enough of some of those who are released from prison to understand that they will organize and seek to have some new political role (55).</div>
 
     <p>The atrocity of the <em>senderista</em> monster is terrifying and horrifying, insofar as it refers to the terrorism experienced in Peru for 20 years and the possibility of its repetition. For Agüero, the terror that this monster arouses is found where "the authentic questions" have been forgotten (2015: 66). But how do we rescue something from oblivion? Under what coordinates is it found? In the matter of the monster, particularly, we could consider that in those of fear as an inheritance, which is the main emotion to which Agüero's text induces us as readers. Agüero considers that this forgetting of the authentic questions is "a blind mechanism" (2015: 66), since it replaces these questions "with obvious truths and a comfortable consensus" (66).</p>
 
-    <p>What would these questions be? In the first place, the one that Agüero raises regarding his reflection on the murder of his father by State agents "on the criminal island of El Frontón in 1986, along with another hundred prisoners accused of belonging to Shining Path" (2015: 65): "Is there only evil in every <em>senderista</em> act? Is there a line that once crossed sets you apart from the collective of imperfect beings that populate our past and present?" (67). And immediately, the answer is: "Perhaps yes. Perhaps their barbarism was extreme. And they lost their status as congeners" (67).</p>
+    <p>What would these questions be? In the first place, the one that Agüero raises regarding his reflection on the murder of his father by State agents "on the criminal island of El Frontón in 1986, along with another hundred prisoners accused of belonging to Shining Path" (2015: 65): "Is there only evil in every <em>senderista</em> act? Is there a line that once crossed sets you apart from the collective of imperfect beings that populate our past and present?" (67). And immediately, the answer is: "Perhaps yes. Perhaps their barbarism was extreme. And they lost their status as congeners" (67). This quote draws particular attention, aside from Agüero's double use of "perhaps" –maybe a device of justification?–, due to the logic of the loss of congener status as a consequence of the extreme barbarism incurred by <em>senderistas</em>. As if from a certain, undefined point someone is bound to be excluded from the social pact, expelled by society and history "like a nightmare or disease" (2015: 58). So, it is worth asking, alongside Agüero: "Can a terrorist member of Shining Path die with dignity? Can they die worrying about their wounded comrades, trying to save them? Can they die in silence, without pleading with their murderers, standing in front of those who shot them?" (66). Or, on the contrary, as some "human rights and transitional justice technician" (66) argued, would it not "be necessary to look for heroism among criminals and terrorists, as better examples should be rescued among civilian victims" (66)? This are some of the main ethical quests of Agüero's text and, as it has been mentioned before, the novelty of his questionings lies in their controversial nature.</p>
 
-    <p>These are authentic questions that, just by being asked, inquire not only in the specific subject that is being questioned, but also, with it, in Peruvian society as a whole. But these are rarely formulated, and instead oblivion sets in. Therefore, it happens that "saying 'terruco' or 'terruca' [terrorist] is like saying 'witch' or 'demon'. This label fixes a person as a horror-error. A being of terror outside the community, which must be eliminated" (Agüero, 2015: 103).</p>
+    <p>These are authentic questions that, just by being asked, inquire not only in the specific subject that is being questioned, but also, with it, in Peruvian society as a whole. But these are rarely formulated, and instead oblivion sets in. Therefore, it happens that "saying 'terruco' or 'terruca' [terrorist] is like saying "witch" or "demon". This label fixes a person as a horror-error. A being of terror outside the community, which must be eliminated" (Agüero, 2015: 103). But, it also happens, particularly in Agüero's personal history, that the State is capable of operating in a brutal and monstrous way. On this reality, the author comments, regarding the brutal repression of a mutiny of Shining Path prisoners, at the end of 1985:</p>
 
-    <h2>The State Monster</h2>
+    <div class="pull-quote">These riots were a way of exerting pressure and provoking reactions that the Communist Party of Peru – Shining Path could later capitalize on politically. But the reaction was always disproportionate. It always puzzled the people I lived with or knew. They never expected such a degree of brutality. I was not expecting it in any case (83).</div>
 
-    <p>Agüero did not expect to become a victim of the State brutality that left him orphaned of both parents, extrajudicially executed by agents of the Armed Forces. Furthermore, as told by the author, in 2004 the Public Ministry informed his family that they had managed to identify the <em>alleged remains</em> of his father and of 30 other murder victims of El Frontón. <em>Alleged remains</em> is emphasized, because forensic experts consulted by the family categorically expressed that it was a sham and it was technically impossible for anyone to have been identified under those working conditions. However, some members of the families, out of necessity, received — and then buried, in order to visit the graves and bring them flowers — boxes with the remains of a missing person who most certainly was not theirs (68).</p>
+    <p>It is necessary, in order to begin to understand this dimension of Agüero's testimony, to reflect on the complexity of the radicalization process of Shining Path militants and the different perspectives on revolutionary action among members the same group, in the context of 1980s Peru. Denegri and Hibbett (2016) describe the <em>senderista</em> discourse as a "simulacrum of a political discourse of change" –taking Alain Badiou's term–, which insists that "its violence is a response to a long history of exclusion and inequality" (40-41). The Shining Path discourse did not take on the challenge of addressing social antagonism, but rather proposed "another version of the myth of progress towards a supposed final harmonic society that would work through the submission to an unquestionable leader" (43). In this sense, the extreme polarization posed by Shining Path's "prophetic" discourse implied violence towards those who did not blindly share these ideals, as this was seen as a threat against societal change (2016: 43). This being said, it cannot be overlooked that, in practice, this simulation of change was considered irresistible for many Peruvians, a reality which, Denegri and Hibbett point out, "is a symptom of the lack of adequate transformation resources in society" (2016: 43).</p>
 
-    <p>Denying surviving families the possibility of burying their deceased member would imply, then, inflicting on them the impact of a double death of the loved one, namely, that of their physical body and that of their memory in the community's imaginary. This act is of double monstrosity when it's also systematically justified. To better read this, it becomes necessary to explain that when Žižek makes use of the word "symbolization" it is in reference to the concept of the order of the Symbolic in Lacanian theory. About this order, Žižek (2014) adds that: "The Symbolic dimension is what Lacan calls the Big Other, the invisible order that structures our experience of reality, the complex network of norms and meanings that makes us see what we see as we see it" (107).</p>
+    <p>As mentioned above, Agüero's work is specifically inscribed in the post-conflict narrative intensely influenced by –and which seeks to complement and deepen– the Final Report of the TRC of 2003. Until its publication, and from the beginning of the conflict's end in 1992,<sup>7</sup> State policies to approach recent memory were aligned with the intention of entering a stage of "collective amnesia" (Hayward, 2000: 90), to eliminate or minimize the use of terror by political and military actors from national memory. At the same time, after the fall of Shining Path, what is known as the "saving memory" was installed within the collective imaginary, in which then-President Alberto Fujimori, his adviser Vladimiro Montesinos and the Armed Forces of Peru presented themselves as those who had managed to defeat terrorism and "pacify" the country (Degregori, 2015: 29). This led, as a consequence, to an absolute rejection and social censorship of all <em>senderistas</em> and their families, as well as of those who questioned the official version of events; both groups were seen as "the incarnation of evil" (Degregori, 2015: 29).</p>
 
-    <p>It has been learned to fear the <em>senderista</em> monster but not the State monster. This is one of the first but main observations we can draw from Agüero's authentic questions. The incidents of human rights violations by State agents that could not be hidden, were propagated by the Fujimori regime and turned into common sense as the "necessary cost" the country had to pay to end subversive violence (Degregori, 2004: 264). The State monster must not be forgotten. It must be emphasized that the largest and main victims of the Armed Forces were the population they claimed to be defending from subversive attacks: the peasant populations of the interior of the country. The TRC estimates that State agents were responsible for 46% of all reported fatalities, 60% of the forced disappearances, and 83% of the rapes of women (CVR, 2003).</p>
+    <p>Agüero's testimonial narrative is located in the historical moment described in the previous paragraph. Portocarrero (2012) points out that an overwhelming majority of texts on violence from this period fail to recognize "one of the parties to the conflict, the <em>senderistas</em>, assuming them as outsiders, sectarians and violent", representing them as "an unexplained presence, a kind of ghost that travels roads, devastating towns, murdering people" (147-148). The lack of representation of the figure of the <em>senderista</em>, their motivations and the possibility of their victimization emerged as a necessity for the reconciliation intentions of the works on political violence, and we can affirm that this void was partially filled by <em>Los rendidos</em>. Agüero's text also allows us to carry out what Portocarrero notes as lacking in the previous narrative, to "ask ourselves about the humanity" of <em>senderistas</em> (2012: 147-148), and the social factors that were behind the actions of their militants, as previously pointed out by Denegri and Hibbett.</p>
 
-    <h2>Beyond Fear as an Inheritance</h2>
+    <p>In this sense, Agüero's proposals does not only come from a point of view that manages to explain in intimate detail the first social impulse that ended in the radicalization of a large part of Shining Path's militants, and subsequently, in conflict and violence. His narrative also exerts ethical-political pressure on political hegemony in national memory, the extreme censorship of all voices on the conflict that came from a place not strictly in favor of the "saving memory" or an intention of "collective amnesia". In this sense, we can argue that Agüero's narrative intention is not to remove responsibility from any guilty party of the conflict, much less to forget. It is to establish a national, historical and integrated account, which includes both parties to the conflict, the transgenerational victims of this event –in this field is included Agüero, as the son of extrajudicially executed <em>senderistas</em>– and an ethical-political reflection that transforms the common meanings of a hegemonic imaginary that does not represent the story of the conflict in its entirety –carried out by Agüero, as a thinker of Peruvian history, reflecting on the political concept of democracy, the paradigm of human rights and its influence on the establishment of historical memory.</p>
 
-    <p>According to what has been argued so far, this consensus on what happened during the armed conflict — this ideal fantasy at the service of the State — would conceal an original quagmire, which would in turn be an elemental antagonism that has been repressed. In the case of <em>Los rendidos</em>, then, the fantasy of the <em>senderista</em> monster would sustain the repressed antagonism of the terrifying double death of the murdered and disappeared by agents of the State. In this way, it is better understood when Agüero writes:</p>
+    <h2>The State monster</h2>
+
+    <p>Agüero did not expect to become a victim of the State brutality that left him orphaned of both parents, extrajudicially executed by agents of the Armed Forces. Furthermore, as told by the author, in 2004 the Public Ministry informed his family that they had managed to identify the alleged remains of his father and of 30 other murder victims of El Frontón. Alleged remains is emphasized, because forensic experts consulted by the family categorically expressed that it was a sham and it was technically impossible for anyone to have been identified under those working conditions. However, some members of the families, out of necessity, received –and then buried, in order to visit the graves and bring them flowers– boxes with the remains of a missing person who most certainly was not theirs (68). One may wonder about the reasons and motives for the extreme cruelty and barbarism perpetrated by the State with total impunity. What does it mean to deny a victim the possibility of burying their deceased, of being able to say goodbye? To grasp this problem, Žižek's (2000) comment on the funeral rite is useful:</p>
+
+    <div class="pull-quote">The funeral rite exemplifies symbolization in its purest form: through it, the dead person is inscribed in the text of the symbolic tradition, they are assured that, despite death, they will 'continue to live' in the memory of the community (48).</div>
+
+    <p>Denying surviving families the possibility of burying their deceased member would imply, then, inflicting on them the impact of a double death of the loved one, namely, that of their physical body and that of their memory in the community's imaginary. This act is of double monstrosity when it's also systematically justified. To better read the previous quotation, it becomes necessary to explain that when the author makes use of the word "symbolization" it is in reference to the concept of the order of the Symbolic in Lacanian theory. About this order, Žižek (2014) adds that:</p>
+
+    <div class="pull-quote">The Symbolic dimension is what Lacan calls the «Big Other», the invisible order that structures our experience of reality, the complex network of norms and meanings that makes us see what we see as we see it (and what we do not see as we not see it) (107).</div>
+
+    <p>In this way, it is further understood how this second death of the disappeared person works, which is no longer visible in our experience of reality as a consequence of its elimination from the collective framework of norms and meanings. They are, then, replaced in its absence by "narratives and fears" (Agüero, 2015: 55), evident truths and comfortable consensus that operate as an ideal fantasy at the service of the State, to maintain order and protect those considered true citizens from the real and symbolic violence of its excesses. On fantasy, Žižek (2011) proposes that…</p>
+
+    <div class="pull-quote">…it is the primary form of the narrative with which some original impasse is concealed (...) the narrative as such appears to eradicate some elemental antagonism by reorganizing its elements in a temporal succession. Consequently, the very form of the narrative highlights the existence of a repressed antagonism (16).</div>
+
+    <p>It has been learned to fear the <em>senderista</em> monster but not the State monster. This is one of the first but main observations we can draw from Agüero's authentic questions. This reflection seems to account for a political vision of memory that, even if it accepts the existence of traumatic events of this period, proposes that the "cure" consists of forgetting and "looking to the future" (Saona, 2008: 158). The incidents of human rights violations by State agents that could not be hidden, were propagated by the Fujimori regime and turned into common sense as the "necessary cost" the country had to pay to end subversive violence (Degregori, 2004: 264). In the same way, and as mentioned before, those who did not opt for the "official version" of events were immediately censored and branded as terrorists, a common sense that made the search for representation or justice even more difficult for victims of human rights violations and families of victims who were also part of Shining Path. Here is where the story of Agüero and his parents is located.</p>
+
+    <p>Until the truths exposed by the TRC began to settle in the national imaginary, the majority of victims and survivors of violence had already undergone more than a decade of re-victimization, censorship and discrimination, and their stories had remained hidden. From the work of the TRC, as well as from narratives about victims that dialogue with the Final Report, these people had the opportunity to voice their demands in the face of the State emergency without the risk of being called terrorists (Laplante &amp; Theidon cited in Waardt, 2013: 841). The State monster must not be forgotten, not only from the point of view of Shining Path human right violation victims. It must be emphasized that the largest and main victims of the Armed Forces were the population they claimed to be defending from subversive attacks: the peasant populations of the interior of the country. The TRC estimates that State agents were responsible for 46% of all reported fatalities, 60% of the forced disappearances, and 83% of the rapes of women (CVR, 2003).</p>
+
+    <h2>Beyond fear as an inheritance</h2>
+
+    <p>According to what has been argued so far, this consensus on what happened during the armed conflict, this ideal fantasy at the service of the State mentioned above, would conceal an original quagmire, which would in turn be an elemental antagonism that has been repressed. In the case of <em>Los rendidos</em>, then, the fantasy of the <em>senderista</em> monster would sustain the repressed antagonism of the terrifying double death of the murdered and disappeared by agents of the State. In this way, it is better understood when Agüero writes:</p>
 
     <div class="pull-quote">I believe that I must recover my inheritance without mythologizing Shining Path, reconstructing its complex experience, but without giving a lie to the pressure of the powers that have triumphed, which cannot always be summarized as the triumph of Democracy. It is not that simple (2015: 120).</div>
 
-    <p>Indeed, it is not that simple, because there cannot be a triumphal democracy in the country as long as fear is the heritage of Peruvians. However, the space of this fear is, paradoxically, the best starting point to overcome it. Taking into account the ethical-political proposals we can extract from Agüero's text, it would be a matter of de-mythologizing as to not be paralyzed with horror at the fantasy of the <em>senderista</em> monster, but accept its demand for meaning, which is why it returns and why it's frightening. In this way, Agüero's text is a democratic exercise and an invitation to understanding.</p>
+    <p>Indeed, it is not that simple, because there cannot be a triumphal democracy (Democracy) in the country as long as fear is the heritage of Peruvians. However, the space of this fear is, paradoxically, the best starting point to overcome it. Taking into account the ethical-political proposals we can extract from Agüero's text, it would be a matter of de-mythologizing as to not be paralyzed with horror at the fantasy of the <em>senderista</em> monster, but accept its demand for meaning, which is why it returns and why it's frightening. In this way, Agüero's text is a democratic exercise and an invitation to understanding. In relation to the latter, Paz Amaro (2017), in regards to <em>Los rendidos</em>, writes the following:</p>
 
-    <p>All discussed above, then, is perhaps another way of saying, together with Agüero, that "the <em>senderista</em> monster could have had a motivation and this could be very diverse and could change over time, could have had its suffering and this could have been not banal" (2015: 55–56). The case, reported by Agüero, of a tortured ex-<em>senderista</em> woman, raped for weeks until she lost track of time, but who nevertheless never confessed or betrayed her companions, who thought she would die there, bandaged, who was later imprisoned and who fell ill from consequence of torture, is of particular interest:</p>
+    <div class="pull-quote">His text does not conform to the characterization that Beatriz Sarlo has made of the non-academic, testimonial narratives that have emerged in the field of memory in the Southern Cone in recent decades, which reduce the field of hypotheses to surrender, as she says, to the story (...) Sarlo aims to consolidate a way of approaching the past that seeks to go beyond memory: it is more necessary to understand, says Sarlo, than to remember. Although to understand you have to remember. And what Agüero's text, which emerges from personal memories (…) achieves, is to tackle the problem of understanding. Understand to heal. Understand to change (109-110).</div>
+
+    <p>All discussed above, then, is perhaps another way of saying, together with Agüero, that "the <em>senderista</em> monster could have had a motivation and this could be very diverse and could change over time, could have had its suffering and this could have been not banal" (2015: 55- 56). But thinking about non-banal <em>senderista</em> motivations seems to be nonsense for some popularized common sense; on the other hand, this is precisely the function of the fantasy of the <em>senderista</em> monster, that is, to evade and cancel "the authentic questions" (66). But what could have been these non-banal motivations of the <em>senderistas</em>? And what is the right disposition to listen to them without simply appearing to be in the presence of monstrous justifications? Is it even possible to aspire to such a longed-for understanding?</p>
+
+    <p>The case, reported by Agüero, of a tortured ex-<em>senderista</em> woman, raped for weeks until she lost track of time, but who nevertheless never confessed or betrayed her companions, who thought she would die there, bandaged, who was later imprisoned and who fell ill from consequence of torture (she now walks with difficulty)<sup>8</sup> (2015: 102), is of particular interest to try to answer some of the previously stated questions:</p>
 
     <div class="pull-quote">This woman, who was from Shining Path, actively participated in actions in Lima. She murdered, indelibly harming dozens of families. But she is not a crazy woman, nor a sadistic monster. She, too, is not a typical underdog as the victim of human rights violations is often thought of. She is a city woman who was born in a marginal neighborhood, in distress. But for very different reasons, generational, family, for her own inclination, for influences, for a thousand things, she enrolled in Shining Path. And we find ourselves in front of a woman who committed crimes, but whose motivations were not, so to say, low (102).</div>
 
-    <p>Then, according to what has been reflected through Agüero's text, we can trace the existence of an unbearable and intolerable substratum of injustice, suffering, marginality, misery and deprivation in Peru that was at the very base of the motivations for radicalization towards violence of many people who, on the other hand, had there been other possibilities, could not have been very different from the so-called "civilized people". From this last idea, the author poses yet another authentic question: "And really, don't they resemble us?" (2015: 67). The question remains open.</p>
+    <p>From the above quote it is revealing that the author affirms that the ex-<em>senderista</em> woman in question is not a crazy woman. In addition, by pointing out that he is not a sadistic monster either, Agüero seems to want to indicate that if this woman committed crimes, she did not commit them out of senseless cruelty, but because she had decided to do so in the full exercise of her reason, in the same way that she enrolled in Shining Path. Now, with respect to her motivations –which are what is sought to understand–, Agüero affirms that they were not low. How to understand this? Is a murder, for example, committed by a hired hitman, similar to or different from the murder committed by a <em>senderista</em>? Are their motivations different? Is the motivation of the hitman for his actions, in contrast, low? It may be useful at this point, for the sake of clarity, to consider the reflection of Zapata (2017) regarding the motivations of who, at that time, was the number three of the Shining Path dome, only below Abimael Guzmán and Augusta La Torre, namely, former <em>senderista</em> Elena Yparraguirre, also known as "Comrade Miriam". According to Zapata, Yparraguirre could have dedicated…</p>
 
-    <h2>In Conclusion</h2>
+    <div class="pull-quote">…a life devoted to humanitarian assistance, but decided for violence. Several motivations concurred in this election, one of which was his appreciation of the inhumanity of the capitalist system, which has the material means to offer a dignified life for all, but which distributes wealth in such a way that a few have excess, while the masses are starving (2017: 236).</div>
 
-    <p>Agüero undertakes the difficult task of exorcising the ghost of the <em>senderista</em> monster from national memory. Instead, through an intimate, emotional and close view of Sendero's ordinary members, he proposes that "they had their personal reasons to fight, they had ideals, and urgencies" (2015: 58). This, although does not absolve them of guilt and responsibility for the crimes they committed, "gives some meaning back to their lives. It brings them closer to history and does not expel them like a nightmare or illness" (2015: 58).</p>
+    <p>More specifically, in the case of the former <em>senderista</em> Yparraguirre, Zapata seems to have partially understood her motivation as frustration and impotence in the face of social injustice, outrage at the dispossessed and a sensitivity wounded by "the continuity of misery in the midst of abundance" (2017: 236). Perhaps, if there had been some means or resource in the country to be able to constructively channel said impotence and frustration, her destiny would not have been different, maybe what the historian Zapata imagines. But there is no way to know. This imagined possibility is related to another of "the authentic questions" that Agüero raises, that of injustice as a breeding ground for violence. Is it possible to live in peace while knowing that injustice is there, next door, in all its unworthiness? Or is it easier to look elsewhere? Regarding this, Agüero recalls the rage of a colleague from his history faculty against a scholarly professor, politically a left-wing extremist, who from his position urged his students towards violent radicalization. Consequently, the author narrates, many of these students:</p>
 
-    <p>Agüero's narrative starts from a place of misunderstanding: "there was no empathy towards my type of experience. Son of terrorists, even if they have been badly killed, there must be something wrong with him" (115). In this way, the author seeks to expand the field of possible victims of the conflict, by those who do not necessarily fall into the polarizing category of the established memory, a new category that "destabilizes and re-politicizes; makes gray areas visible" (Hibbett, 2019: 9). By granting humanity to the <em>senderista</em>, Agüero allows himself "to be a victim for the first time, in order to have the opportunity to forgive, and then, surrender" (2015: 56–57, 120).</p>
+    <div class="pull-quote">[They] entered Sendero and died or were disappeared or rotted in jail. And [the professors] remained in their lives as provocateurs, radicals of the word. How many other leftist leaders fit this description. The language of the revolution, the duty of change, the awareness of injustice and its unworthiness (not being able to live in peace while injustice is there, staining the days and breakfasts). The option to take courage and dare to fight through force. Sensitive and rebellious spirits fed in this way (2015: 62-63).</div>
+
+    <p>Then, according to what has been reflected through Agüero's text, we can trace the existence of an unbearable and intolerable substratum of injustice, suffering, marginality, misery and deprivation in Peru that was at the very base of the motivations for radicalization towards violence of many people who, on the other hand, had there been other possibilities, could not have been very different from the so-called "civilized people". From this last idea, the author poses yet another authentic question that is pertinent in regards to how we think about <em>senderistas</em> and about ourselves: "And really, don't they resemble us?" (2015: 67). The question remains open.</p>
+
+    <h2>In conclusion</h2>
+
+    <p>Agüero undertakes the difficult task of exorcising the ghost of the <em>senderista</em> monster from national memory. Instead, through an intimate, emotional and close view of Sendero's ordinary members, he proposes that "they had their personal reasons to fight, they had ideals, and urgencies" (2015: 58). This, although does not absolve them of guilt and responsibility for the crimes they committed, "gives some meaning back to their lives. It brings them closer to history and does not expel them like a nightmare or illness" (2015: 58). Through the literary, ethical and political exercise of <em>Los rendidos</em>, according to Merino Obregón (2015), Agüero bets on…</p>
+
+    <div class="pull-quote">…getting closer to the singularity of the <em>senderista</em> (...), thinking about the specific subjects that were part of the organization, subjects with intimate and diverse motivations, with complex family, friendship and intracommunal relationships, with the capacity for agency, interpretation or questioning of ideology (140).</div>
+
+    <p>Agüero's narrative starts from a place of misunderstanding: "there was no empathy towards my type of experience. Son of terrorists, even if they have been badly killed, there must be something wrong with him" (115). As Merino Obregón points out, "he lives the enunciative moment of suffering, judgment, symbolic violence, of exclusion", and for this reason he asks –and ethically justifies this request– "that he be recognized beyond the condemnatory stigma: that is, that it is possible for him to identify himself as someone who has suffered loss" (2015: 143). In this way, the author seeks to expand the field of possible victims of the conflict, by those who do not necessarily fall into the polarizing category of the established memory, a new category that "destabilizes and re-politicizes; makes gray areas visible" (Hibbett, 2019: 9). By granting humanity to the <em>senderista</em>, "returning density to them, giving them context, recovering them in their trajectories of life, of generation", Agüero allows himself "to be a victim for the first time, in order to have the opportunity to forgive, and then, surrender" (2015: 56- 57, 120). In this sense, the ethical dimension of Agüero's proposal is further expanded, the forgiveness that he proposes "is not a passive practice, but an action in which concrete moral and political values are upheld" (Merino Obregón, 2015: 146).</p>
 
     <p>It was stated that the horror of the <em>senderista</em> monster lays where the authentic questions have been forgotten. Thus, opting for memory, we have tried to reflect on some of the authentic questions that Agüero has left raised throughout his book. On the horror itself, the author maintains that "it is that, horror. You have to recover it and describe it and relive it and then draw its consequences, look at us without tricks with our shared or own dirt. And let's see if we can recognize ourselves" (2015: 101). It can be argued, alongside the author, that those considered as enemies, "although strange, perhaps are not necessarily so distant, perhaps a reflection of us and an entire generation dwells in those who are the enemies" (17).</p>
 
@@ -483,44 +511,51 @@ nav {
 
   </div>
 
-  <!-- FOOTNOTES -->
   <div class="essay-footnotes">
     <span class="essay-footnotes-label">// Notes</span>
-    <div class="footnote fn1">This paper is part of a larger work in process. In 2020, an early version was adapted and presented in the XXV Colloquium of Literature Students of the PUCP and subsequently published in the literature magazine <em>Hawansuyo</em> (Lima–New York).</div>
-    <div class="footnote fn2">The internal armed conflict was the confrontation sustained for two decades (1980–2000) by the Communist Party of Peru – Shining Path and the Armed Forces of Peru. It left around 69,000 dead and missing, of which 85% were from the interior of the country, 79% lived in rural areas and 75% had Quechua or another native language as their mother tongue (CVR, 2003).</div>
-    <div class="footnote fn3">The Truth and Reconciliation Commission (CVR) was the commission in charge of investigating crimes and human rights violations committed during the armed conflict. Its work emphasized the importance of collective rights in Andean and native communities in the country (Degregori, 2004).</div>
-    <div class="footnote fn4">A proposed translation of the title: <em>The surrendered. On the gift of forgiveness.</em></div>
-    <div class="footnote fn5">It is important to clarify the use that is given to trauma in this case. Saona (2008) points out that the TRC articulated in an unprecedented way the awareness that the two decades of conflict constituted a collective trauma for the country, and introduced the notion of "trauma" to the national imaginary: "an event that caused a deep wound, either in the body or the psyche — in this case of the nation" (157–158).</div>
-    <div class="footnote fn6">John Beverley is one of the most important theorists on the Latin American testimony as a literary genre. According to Beverley, this genre is characterized by non-fictional narrative texts, generally related in the first person, in which the narrator is protagonist or spectator of the events referred to, and is part of a community or group oppressed in the narrated events.</div>
-    <div class="footnote fn7">Despite the fact that since the TRC's Report it is a historical consensus that the internal conflict culminated in 2000, it is considered that the beginning of the end took place in 1992 with the capture of Abimael Guzmán. This happened during the government of Alberto Fujimori, however, the TRC attributes the fall of Sendero mainly to the action of peasant patrols (CVR, 2003).</div>
-    <div class="footnote fn8">Both the Armed Forces and Shining Path perceived women based on the usefulness they could represent for men. The overwhelming majority of rapes of women (83%) were committed by State agents (CVR, 2003). Women captured by the Armed Forces were kidnapped under the excuse of interrogation or arrest purposes, to be "offered" to entire military units (Salazar, 2013; CVR, 2003).</div>
+    <div class="footnote"><span class="fn-num">1</span>The present paper is part of a larger work in process. In 2020, an early version was adapted and presented in the XXV Colloquium of Literature Students of the PUCP and subsequently published in the literature magazine <em>Hawansuyo</em> (Lima – New York).</div>
+    <div class="footnote"><span class="fn-num">2</span>The internal armed conflict was the confrontation sustained for two decades (1980-2000) by the Communist Party of Peru – Shining Path (Partido Comunista del Perú – Sendero Luminoso, PCP-SL) –and, to a lesser extent, the Tupac Amaru Revolutionary Movement (Movimiento Revolucionario Túpac Amaru, MRTA)– and the Armed Forces of Peru. It has been verified that the conflict was the most intense, extensive and prolonged period of violence in all republican history; it left around 69,000 dead and missing, of which 85% were from the interior of the country, 79% lived in rural areas and 75% had Quechua or another native language as their mother tongue (CVR, 2003).</div>
+    <div class="footnote"><span class="fn-num">3</span>The Truth and Reconciliation Commission (Comisión de la Verdad y Reconciliación, CVR) was the commission in charge of investigating crimes and human rights violations committed during the armed conflict –forced disappearances, murders, kidnappings, torture, sexual violations and other serious injuries– whose work emphasized the importance of collective rights in Andean and native communities in the country (Degregori, 2004). In the text "Heridas que dejan cicatrices", Miguel Giusti (2018) makes a brief but precise account of the creation and modifications suffered by the Truth Commission, which would later become in the Truth and Reconciliation Commission (TRC). The author discusses how different post-conflict governments (particularly, that of Valentín Paniagua and of Alejandro Toledo) began to alter the perspective from which the crimes occurred during the conflict were analyzed and interpreted (Giusti, 2018).</div>
+    <div class="footnote"><span class="fn-num">4</span>A proposed translation of the title: The surrendered. On the gift of forgiveness.</div>
+    <div class="footnote"><span class="fn-num">5</span>It is important to clarify the use that is given to trauma in this case. Saona (2008) points out that the TRC articulated in an unprecedented way the awareness that the two decades of conflict constituted a collective trauma for the country, and introduced the notion of "trauma" to the national imaginary: "an event that caused a deep wound, either in the body or the psyche –in this case of the nation" (157-158). Dickson (2013) writes that, while pre-TRC works of fiction "wrote violence", when describing the main events of this period and their immediate consequences, later works focus on "writing the trauma", that is, they deal with the return of the traumatic experience in the present from a work on the violent past (65). In the case of Agüero, the position from which the trauma is written may not be very clear. Although he writes from the transgenerational passage of trauma, as the son of <em>senderista</em> parents extrajudicially executed, recognizing his experience as traumatic is part of the ethical-political discussions of the book, insofar as his parents are also considered among the victimizers of the conflict.</div>
+    <div class="footnote"><span class="fn-num">6</span>John Beverley is one of the most important theorists on the Latin American testimony as a literary genre. According to Beverley, this genre is characterized by non-fictional narrative texts, generally related in the first person, in which the narrator is protagonist or spectator of the events referred to, and is part of a community or group oppressed in the narrated events. Testimonial narrative generally revolves around the experience of repression, poverty, subalternity, imprisonment, "involved in the very act of narration" (1989: 16). Following this line, in the majority of Latin American cases, and particularly in the case of the Peruvian internal war, these narratives seek "from a perspective alien to power (...) to show the horror of social life (...) and give an account of the failure of the lettered city to represent the nation" (Vich, 2016: 354). In this sense, Agüero's testimony is difficult to classify within a traditional testimony due to the particularity of being written by a lettered subject and, therefore, not subaltern in the classic sense, but nevertheless excluded from the traditional narrative and underrepresented in the conflict because of his place as a relative of members of Shining Path.</div>
+    <div class="footnote"><span class="fn-num">7</span>Despite the fact that since the TRC's Report it is a historical consensus that the internal conflict culminated in 2000, it is considered that the beginning of the end took place in 1992 with the capture of Abimael Guzmán, the absolute leader of Shining Path, and the subsequent dismantling of the subversive group. This happened during the government of Alberto Fujimori, however, the TRC attributes the fall of Sendero mainly to the action of peasant patrols, made up of members of peasant communities of the interior of the country, the region most attacked by Sendero (CVR, 2003). At this point is when we see the beginning of the stage of "collective amnesia" referred to by Hayward (2000).</div>
+    <div class="footnote"><span class="fn-num">8</span>Both the Armed Forces and Shining Path perceived women based on the usefulness they could represent for men, whether these were soldiers or guerrilleros. However, as mentioned in previous pages, the overwhelming majority of rapes of women (83%) were committed by State agents (CVR, 2003). Women captured by the Armed Forces, in many cases female <em>senderistas</em> or presumed <em>senderistas</em>, were kidnapped under the excuse of interrogation or arrest purposes, to be "offered" to entire military units, "to be used and abused as they disposed, in practices of torture and collective rapes" (Salazar, 2013; CVR, 2003). Seventeen years have passed since the delivery of the Final Report, and no one guilty of the "thousands of rapes during the armed conflict" has been sentenced (Denegri, 2016: 71). The testimonial listening process is, as has been pointed out, a crucial step for the representation and resolution of trauma (Dickson, 2013), in that sense, cases such as the one referred to by Agüero point to the transitional justice process and the attempt to hearing and offering symbolic reparations to victims, which was first undertaken towards the publication of the Final Report.</div>
   </div>
 
-  <!-- REFERENCES -->
   <div class="essay-references">
     <span class="essay-references-label">// References</span>
     <div class="ref">Agüero, J. C. (2015). <em>Los rendidos. Sobre el don de perdonar.</em> Lima: Instituto de Estudios Peruanos.</div>
     <div class="ref">Badiou, A. (2004). <em>La ética. Ensayo sobre la conciencia del mal.</em> México, D.F.: Herder.</div>
-    <div class="ref">Beverley, J. (1989). "The margin at the center: On testimonio (testimonial narrative)". <em>Modern fiction studies</em> 35(1): 11–28.</div>
+    <div class="ref">Beverley, J. (1989). "The margin at the center: On testimonio (testimonial narrative)". <em>Modern fiction studies</em> 35(1): 11-28.</div>
     <div class="ref">Comisión de la Verdad y Reconciliación [CVR]. (2003). <em>Informe final.</em> Lima: CVR.</div>
-    <div class="ref">Degregori, C. I. (2004). <em>Qué difícil es ser Dios.</em> Lima: Instituto de Estudios Peruanos.</div>
-    <div class="ref">Degregori, C. I. (2015). "Sobre la Comisión de la Verdad y Reconciliación en el Perú". In <em>No hay mañana sin ayer.</em> Lima: Instituto de Estudios Peruanos.</div>
-    <div class="ref">Denegri, F. &amp; Hibbett, A. (2016). "El recordar sucio: estudio introductorio". In <em>Dando cuenta: estudios sobre el testimonio de la violencia política en el Perú (1980–2000).</em> Lima: PUCP.</div>
-    <div class="ref">Dickson, K. (2013). "Trauma and trauma discourse: Peruvian fiction after the CVR". <em>Chasqui,</em> 42(1): 64–76.</div>
-    <div class="ref">González, O. (2015). "Visualización de una política de duelo excluyente". In <em>Políticas en justicia transicional.</em> Lima: Instituto de Estudios Peruanos.</div>
-    <div class="ref">Hibbett, A. (2019). "La problemática centralidad de la víctima en la memoria cultural peruana actual". In <em>Pasados contemporáneos.</em> Madrid/Frankfurt: Iberoamericana Editorial Vervuert.</div>
-    <div class="ref">Merino Obregón, R. (2015). "Expresiones de lo íntimo y condiciones de lo público". In Agüero, J. C. <em>Los rendidos.</em> Lima: Instituto de Estudios Peruanos.</div>
-    <div class="ref">Portocarrero, G. (2012). <em>Razones de sangre.</em> Lima: Pontificia Universidad Católica del Perú.</div>
-    <div class="ref">Saona, M. (2008). "Cuando la guerra sigue por dentro". <em>INTI, Revista de Literatura Hispánica</em> 67–68: 157–172.</div>
-    <div class="ref">Ubilluz, J. C., Hibbett, A. &amp; Vich, V. (2009). <em>Contra el sueño de los justos.</em> Lima: Instituto de Estudios Peruanos.</div>
-    <div class="ref">Vich, V. (2015). <em>Poéticas del duelo.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">Degregori, C. I. (2004). <em>Qué difícil es ser Dios. El Partido Comunista del Perú Sendero Luminoso y el conflicto armado interno en el Perú: 1980-1999.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">-----------------. (2015). "Sobre la Comisión de la Verdad y Reconciliación en el Perú". Degregori, C. I., Portugal, T., Salazar, G. &amp; Aroni, R. (eds.). <em>No hay mañana sin ayer. Batallas por la memoria y consolidación democrática en el Perú.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">Denegri, F. (2016). "Cariño en tiempos de paz y guerra: lenguaje amoroso y violencia sexual en el Perú". Denegri, F. &amp; Hibbett, A. (eds.). <em>Dando cuenta: estudios sobre el testimonio de la violencia política en el Perú (1980-2000).</em> Lima: PUCP.</div>
+    <div class="ref">Denegri, F. &amp; Hibbett, A. (2016). "El recordar sucio: estudio introductorio". Denegri, F. &amp; Hibbett, A. (eds.). <em>Dando cuenta: estudios sobre el testimonio de la violencia política en el Perú (1980-2000).</em> Lima: PUCP.</div>
+    <div class="ref">Dettleff, J. (2018). "Representaciones de la ciudad ayacuchana en dos películas peruanas, durante el conflicto armado interno". <em>Contratexto,</em> 30: 81-204. Lima: Universidad de Lima.</div>
+    <div class="ref">Dickson, K. (2013). "Trauma and trauma discourse: Peruvian fiction after the CVR". <em>Chasqui,</em> 42(1): 64-76. Quito: CIESPAL.</div>
+    <div class="ref">Giusti, M. (2018). "Heridas que dejan cicatrices. Algunas lecciones del caso peruano sobre justicia transicional". Aponte, A. (ed.). <em>Justicia transicional y derecho penal internacional.</em> Bogotá: Siglo del Hombre Editores.</div>
+    <div class="ref">González, O. (2015). "Visualización de una política de duelo excluyente: iniciativas artísticas por los desaparecidos en el Perú". Huber, L. &amp; Pino, P. (comp.). <em>Políticas en justicia transicional: miradas comparativas sobre el legado de la CVR.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">Hayward, S. (2000). "Framing national cinema". Hjort, M. &amp; Mackenzie, S. (eds.). <em>Cinema &amp; Nation.</em> Londres: Routledge.</div>
+    <div class="ref">Hibbett, A. (2019). "La problemática centralidad de la víctima en la memoria cultural peruana actual". Vivanco, L. &amp; Johansson, M.T. (eds.). <em>Pasados contemporáneos. Acercamientos interdisciplinarios a los derechos humanos y las memorias en Perú y América Latina.</em> Madrid/Frankfurt: Iberoamericana Editorial Vervuert.</div>
+    <div class="ref">La Paz, L. (2017). "El discurso autobiográfico y la responsabilidad de los "hijos" en un contrapunto escritural: en torno a <em>Los rendidos,</em> de José Carlos Agüero, y <em>La distancia que nos separa,</em> de Renato Cisneros". <em>Cuadernos del CILHA</em> 18/27: 95-119.</div>
+    <div class="ref">Lillo, G. (2011). "La teta asustada (Perú, 2009) de Claudia Llosa". <em>Revista de Crítica Literaria Latinoamericana</em> (73), 421-446.</div>
+    <div class="ref">Merino Obregón, R. (2015). "Expresiones de lo íntimo y condiciones de lo público. Una lectura de <em>Los rendidos".</em> Agüero, J. C. <em>Los rendidos. Sobre el don de perdonar.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">Portocarrero, G. (2012). <em>Razones de sangre. Aproximaciones a la violencia política.</em> Lima: Pontificia Universidad Católica del Perú.</div>
+    <div class="ref">Salazar, C. (2013). "Género y violencia política en la literatura peruana: Rosa Cuchillo y Las hijas del terror". <em>Confluencia</em> 29(1): 69-80. Colorado: University of Northern Colorado.</div>
+    <div class="ref">Saona, M. (2008). "Cuando la guerra sigue por dentro: Posmemoria y masculinidad entre Yuyanapaq y Días de Santiago". <em>INTI, Revista de Literatura Hispánica</em> 67-68: 157-172. Connecticut: University of Connecticut.</div>
+    <div class="ref">Ubilluz, J. C., Hibbett, A. &amp; Vich, V. (2009). <em>Contra el sueño de los justos. La literatura peruana ante la violencia política.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">Vich, V. (2015). <em>Poéticas del duelo: ensayos sobre arte, memoria y violencia política en el Perú.</em> Lima: Instituto de Estudios Peruanos.</div>
+    <div class="ref">--------. (2016). "Testimonio otro: un empresario ante la violencia política". Denegri, F. &amp; Hibbett, A. (eds.). <em>Dando cuenta: estudios sobre el testimonio de la violencia política en el Perú (1980-2000).</em> Lima: PUCP.</div>
+    <div class="ref">Vivanco, L. (2018). "Tres veces muertos: narrativas para la justicia y la reparación de la violencia simbólica en el Perú". <em>Revista Chilena de Literatura</em> 97: 127-152.</div>
+    <div class="ref">Waardt, M. (2013). "Are Peruvians victims being mocked? Politicization of victimhood and victims' motivations for reparations". <em>Human Rights Quarterly</em> 35(4): 830-849. Baltimore: John Hopkins University Press.</div>
     <div class="ref">Zapata, A. (2017). <em>La guerra senderista: hablan los enemigos.</em> Lima: Taurus.</div>
-    <div class="ref">Žižek, S. (2000). <em>Mirando al sesgo.</em> Buenos Aires: Paidós.</div>
-    <div class="ref">Žižek, S. (2011). <em>El acoso de las fantasías.</em> Madrid: Akal.</div>
-    <div class="ref">Žižek, S. (2014). <em>Acontecimiento.</em> Madrid: Sextopiso.</div>
+    <div class="ref">Žižek, S. (2000). <em>Mirando al sesgo. Una introducción a Jacques Lacan a través de la cultura popular.</em> Buenos Aires: Paidós.</div>
+    <div class="ref">----------. (2011). <em>El acoso de las fantasías.</em> Madrid: Akal.</div>
+    <div class="ref">----------. (2014). <em>Acontecimiento.</em> Madrid: Sextopiso.</div>
   </div>
 
-  <!-- FOOTER -->
   <div class="essay-footer">
     <div class="essay-footer-brand">SPECULATIVE WARFARE<span>_</span></div>
     <a href="index.html#essays" class="back-link">← Return to Archive</a>
