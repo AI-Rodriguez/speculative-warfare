@@ -705,6 +705,21 @@ nav {
   transition: transform 0.25s, color 0.25s;
 }
 
+a.essay-link {
+  text-decoration: none;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 45px 1fr 30px;
+  gap: 1rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.4s;
+  cursor: pointer;
+}
+
+a.essay-link:hover { border-color: var(--red-dim); }
+a.essay-link:hover .essay-arrow { color: var(--red); transform: translateX(4px); }
+
 /* Archive separator */
 .archive-sep {
   display: flex;
@@ -1221,12 +1236,12 @@ body.es [data-es] { display: revert !important; }
 
   <!-- Archive editorial note -->
   <div class="archive-note">
-    <span data-en>The following texts were written before Speculative Warfare existed as a platform. They represent an earlier moment in the research — rooted in Latin American cultural production, political violence, and memory — from which the current theoretical project emerged. They are published here as founding documents: the intellectual ground from which this hub grows.</span>
-    <span data-es>Los textos que siguen fueron escritos antes de que Speculative Warfare existiera como plataforma. Representan un momento anterior de la investigación, enraizado en la producción cultural latinoamericana, la violencia política y la memoria, desde el cual emergió el proyecto teórico actual. Se publican aquí como documentos fundacionales: el suelo intelectual desde el que crece este hub.</span>
+    <span data-en>The following text was written before Speculative Warfare existed as a platform. It represents an earlier moment in the research, rooted in Latin American cultural production, political violence, and memory as axes from which SW_ emerges. It is published here as a founding document: the intellectual ground from which this hub grows.</span>
+    <span data-es>El siguiente texto fue escrito antes de que Speculative Warfare existiera como plataforma. Representa un momento anterior de la investigación, enraizado en la producción cultural latinoamericana, la violencia política y la memoria como ejes desde los que SW_ emerge. Se publica aquí como documento fundacional: el suelo intelectual desde el que crece este hub.</span>
   </div>
 
   <!-- Founding Document: Senderista Monster -->
-  <div class="essay-row">
+  <a href="senderista-monster.html" class="essay-row essay-link">
     <div class="essay-num">F.01 —</div>
     <div class="essay-body">
       <div class="essay-tags">
@@ -1242,7 +1257,7 @@ body.es [data-es] { display: revert !important; }
       <div class="essay-meta">— 2020 &nbsp;·&nbsp; PUCP / Hawansuyo &nbsp;·&nbsp; 45 min read</div>
     </div>
     <div class="essay-arrow">→</div>
-  </div>
+  </a>
 
 </section>
 
