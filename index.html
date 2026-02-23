@@ -705,6 +705,45 @@ nav {
   transition: transform 0.25s, color 0.25s;
 }
 
+/* Archive separator */
+.archive-sep {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 4rem 0 2rem;
+}
+
+.archive-sep-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-r);
+}
+
+.archive-sep-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+.archive-note {
+  font-family: var(--body-mono);
+  font-size: 0.6rem;
+  line-height: 2;
+  color: var(--fg-dim);
+  max-width: 680px;
+  margin-bottom: 2rem;
+  padding-left: calc(45px + 1rem);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .archive-note { padding-left: 0; }
+  .archive-sep-label { font-size: 0.42rem; letter-spacing: 0.2em; }
+}
+
 /* ═══════════════════════════════════════════════
    ABOUT SECTION
 ═══════════════════════════════════════════════ */
@@ -1100,11 +1139,13 @@ body.es [data-es] { display: revert !important; }
 
 <!-- ══ ESSAYS LIST ════════════════════════════════ -->
 <section id="essays">
+
+  <!-- CURRENT WORK -->
   <div class="essays-head">
     <div>
       <div class="section-eyebrow">
-        <span data-en>// 002 — ALL DISPATCHES</span>
-        <span data-es>// 002 — TODOS LOS DESPACHOS</span>
+        <span data-en>// 002 — CURRENT WORK</span>
+        <span data-es>// 002 — TRABAJO ACTUAL</span>
       </div>
       <h2 class="section-title">
         <span data-en>ESSAYS</span>
@@ -1164,6 +1205,41 @@ body.es [data-es] { display: revert !important; }
       <span class="essay-x" data-en>What architectural and philosophical lessons can be drawn from spaces of destruction? An essay exploring ruins not as endpoints, but as generative theoretical sites.</span>
       <span class="essay-x" data-es>¿Qué lecciones arquitectónicas y filosóficas pueden extraerse de los espacios de destrucción? Un ensayo que explora las ruinas no como puntos finales, sino como sitios teóricos generativos.</span>
       <div class="essay-meta">— Dec 2024 &nbsp;·&nbsp; 10 min read</div>
+    </div>
+    <div class="essay-arrow">→</div>
+  </div>
+
+  <!-- ARCHIVE SEPARATOR -->
+  <div class="archive-sep">
+    <div class="archive-sep-line"></div>
+    <div class="archive-sep-label">
+      <span data-en>// FOUNDING DOCUMENTS — ARCHIVE</span>
+      <span data-es>// DOCUMENTOS FUNDACIONALES — ARCHIVO</span>
+    </div>
+    <div class="archive-sep-line"></div>
+  </div>
+
+  <!-- Archive editorial note -->
+  <div class="archive-note">
+    <span data-en>The following texts were written before Speculative Warfare existed as a platform. They represent an earlier moment in the research — rooted in Latin American cultural production, political violence, and memory — from which the current theoretical project emerged. They are published here as founding documents: the intellectual ground from which this hub grows.</span>
+    <span data-es>Los textos que siguen fueron escritos antes de que Speculative Warfare existiera como plataforma. Representan un momento anterior de la investigación, enraizado en la producción cultural latinoamericana, la violencia política y la memoria, desde el cual emergió el proyecto teórico actual. Se publican aquí como documentos fundacionales: el suelo intelectual desde el que crece este hub.</span>
+  </div>
+
+  <!-- Founding Document: Senderista Monster -->
+  <div class="essay-row">
+    <div class="essay-num">F.01 —</div>
+    <div class="essay-body">
+      <div class="essay-tags">
+        <span class="etag">Memory</span>
+        <span class="etag">Political Violence</span>
+        <span class="etag">Literature</span>
+        <span class="etag lt">EN</span>
+      </div>
+      <span class="essay-t" data-en>The Senderista Monster in <em>Los rendidos</em> by José Carlos Agüero</span>
+      <span class="essay-t" data-es>El monstruo senderista en <em>Los rendidos</em> de José Carlos Agüero</span>
+      <span class="essay-x" data-en>A reading of Agüero's post-conflict testimony through the figure of the senderista monster — analyzing its political and symbolic implications for Peruvian memory, reconciliation, and the authentic questions a society refuses to ask. Published in <em>Hawansuyo</em> (Lima–New York, 2020).</span>
+      <span class="essay-x" data-es>Una lectura del testimonio post-conflicto de Agüero a través de la figura del monstruo senderista, analizando sus implicaciones políticas y simbólicas para la memoria peruana, la reconciliación y las preguntas auténticas que una sociedad se niega a formular. Publicado en <em>Hawansuyo</em> (Lima–Nueva York, 2020).</span>
+      <div class="essay-meta">— 2020 &nbsp;·&nbsp; PUCP / Hawansuyo &nbsp;·&nbsp; 45 min read</div>
     </div>
     <div class="essay-arrow">→</div>
   </div>
