@@ -147,6 +147,18 @@ body::after {
 
 .intro-logo .ir { color: var(--red); }
 
+.intro-ccru {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.25em;
+  color: #2a2a2a;
+  text-align: center;
+  text-transform: uppercase;
+  transition: color 2s;
+}
+
+#intro:hover .intro-ccru { color: #444; }
+
 .intro-line {
   width: 1px; height: 60px;
   background: linear-gradient(to bottom, var(--red), transparent);
@@ -997,6 +1009,7 @@ body.es [data-es] { display: revert !important; }
   <div class="intro-logo">
     SPECULATIVE<br><span class="ir">WARFARE</span>
   </div>
+  <div class="intro-ccru">Photonic Hypercapital digitizes eschatology.</div>
   <div class="intro-line"></div>
   <div class="enter-zone">
     <button class="enter-btn" onclick="enter()">
