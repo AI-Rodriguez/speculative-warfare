@@ -4,6 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SPECULATIVE WARFARE</title>
+
+<!-- Meta -->
+<meta name="description" content="Speculative Warfare is a theoretical hub operating at the threshold of media, image, philosophy, and liberation politics. Essays, analysis, theory, art.">
+<meta name="author" content="Aaron Rodríguez Orsi">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Speculative Warfare — Theoretical Hub">
+<meta property="og:description" content="Where critical thought meets the architecture of conflict. Essays on media, image, philosophy, and liberation politics.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://speculative-warfare.netlify.app">
+<meta property="og:site_name" content="Speculative Warfare">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Speculative Warfare — Theoretical Hub">
+<meta name="twitter:description" content="Where critical thought meets the architecture of conflict.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -21,21 +43,21 @@
 }
 
 [data-theme="dark"] {
-  --bg:           #030303;
-  --bg2:          #0a0a0a;
+  --bg:           #050505;
+  --bg2:          #0c0b0a;
   --fg:           #e8e4dc;
-  --fg-dim:       #888;
-  --fg-dimmer:    #333;
-  --border:       rgba(255,255,255,0.055);
-  --border-r:     rgba(200,0,26,0.22);
-  --grid:         rgba(200,0,26,0.055);
+  --fg-dim:       #968f88;
+  --fg-dimmer:    #3a3533;
+  --border:       rgba(232,228,220,0.06);
+  --border-r:     rgba(200,0,26,0.25);
+  --grid:         rgba(200,0,26,0.06);
   --noise:        0.045;
   --scan:         0.13;
-  --strip-bg:     rgba(200,0,26,0.03);
-  --strip-fg:     rgba(232,228,220,0.1);
-  --nav-bg:       rgba(3,3,3,0.9);
-  --glow:         rgba(200,0,26,0.12);
-  --card-bg:      rgba(255,255,255,0.02);
+  --strip-bg:     rgba(200,0,26,0.04);
+  --strip-fg:     rgba(232,228,220,0.12);
+  --nav-bg:       rgba(5,5,5,0.92);
+  --glow:         rgba(200,0,26,0.14);
+  --card-bg:      rgba(232,228,220,0.03);
 }
 
 [data-theme="light"] {
@@ -384,7 +406,6 @@ nav {
    SCROLL SHOWCASE — CINEMATIC PINNED SECTION
 ═══════════════════════════════════════════════ */
 #showcase-track {
-  /* 5 panels × 100vh height for scroll travel */
   height: 500vh;
   position: relative;
 }
@@ -397,7 +418,6 @@ nav {
   transition: border-color 0.6s;
 }
 
-/* Background panels that slide */
 .sc-bg-panels {
   position: absolute; inset: 0;
   display: flex;
@@ -427,7 +447,6 @@ nav {
     radial-gradient(ellipse 80% 80% at 50% 50%, rgba(200,0,26,0.05) 0%, transparent 70%);
 }
 
-/* Progress bar */
 .sc-progress {
   position: absolute; top: 0; left: 0; right: 0;
   height: 2px; background: var(--border);
@@ -438,7 +457,6 @@ nav {
   width: 0%; transition: width 0.1s linear;
 }
 
-/* Section label */
 .sc-label {
   position: absolute; top: 6rem; left: 3rem;
   font-family: var(--mono); font-size: 0.52rem;
@@ -446,7 +464,6 @@ nav {
   z-index: 10;
 }
 
-/* Panel counter */
 .sc-counter {
   position: absolute; bottom: 3rem; right: 3rem;
   font-family: var(--mono); font-size: 0.6rem;
@@ -454,7 +471,6 @@ nav {
   z-index: 10; transition: color 0.6s;
 }
 
-/* The actual content panels */
 .sc-panels {
   position: relative; z-index: 5;
   width: 100%; padding: 0 3rem;
@@ -499,7 +515,7 @@ nav {
   transition: color 0.6s;
 }
 
-/* Panel 2: Pull quote — full screen text */
+/* Panel 2: Pull quote */
 .sc-panel-2 { justify-content: center; align-items: center; text-align: center; flex-direction: column; gap: 2rem; }
 
 .sc-p2-quote {
@@ -518,7 +534,7 @@ nav {
   text-transform: uppercase;
 }
 
-/* Panel 3: Excerpt — left column layout */
+/* Panel 3: Excerpt */
 .sc-panel-3 { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
 .sc-p3-num {
@@ -542,7 +558,7 @@ nav {
   transition: color 0.6s;
 }
 
-/* Panel 4: Tags / metadata explosion */
+/* Panel 4: Tags */
 .sc-panel-4 { justify-content: center; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
 
 .sc-tag-big {
@@ -560,7 +576,7 @@ nav {
 .sc-tag-big.sz3 { font-size: clamp(1rem, 2vw, 1.8rem); color: var(--fg-dimmer); }
 .sc-tag-big.red { color: var(--red); }
 
-/* Panel 5: CTA — read the essay */
+/* Panel 5: CTA */
 .sc-panel-5 {
   justify-content: center; align-items: center;
   flex-direction: column; gap: 2.5rem; text-align: center;
@@ -578,7 +594,15 @@ nav {
   transition: color 0.6s;
 }
 
+.sc-p5-title em {
+  font-family: var(--serif);
+  font-style: italic;
+  letter-spacing: 0;
+  font-size: 0.6em;
+}
+
 .sc-cta {
+  display: inline-block;
   border: 1px solid var(--red);
   color: var(--red);
   font-family: var(--mono); font-size: 0.6rem;
@@ -586,6 +610,7 @@ nav {
   padding: 0.85rem 2.5rem; background: none;
   cursor: pointer; position: relative; overflow: hidden;
   transition: color 0.3s;
+  text-decoration: none;
 }
 .sc-cta::before {
   content: ''; position: absolute; inset: 0;
@@ -709,16 +734,31 @@ a.essay-link {
   text-decoration: none;
   color: inherit;
   display: grid;
-  grid-template-columns: 45px 1fr 30px;
-  gap: 1rem;
+  grid-template-columns: 70px 1fr 40px;
+  gap: 2rem; align-items: start;
   padding: 2.5rem 0;
   border-bottom: 1px solid var(--border);
-  transition: border-color 0.4s;
-  cursor: pointer;
+  cursor: pointer; position: relative;
+  opacity: 0; transform: translateY(20px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out),
+    border-color 0.6s;
 }
 
-a.essay-link:hover { border-color: var(--red-dim); }
-a.essay-link:hover .essay-arrow { color: var(--red); transform: translateX(4px); }
+a.essay-link.revealed { opacity: 1; transform: translateY(0); }
+
+a.essay-link::before {
+  content: ''; position: absolute;
+  left: -3rem; right: -3rem; top: 0; bottom: 0;
+  background: var(--glow); opacity: 0;
+  transition: opacity 0.35s;
+}
+
+a.essay-link:hover::before { opacity: 1; }
+a.essay-link:hover .essay-num { color: var(--red); }
+a.essay-link:hover .essay-t { color: var(--red); }
+a.essay-link:hover .essay-arrow { transform: translateX(5px); color: var(--red); }
 
 /* Archive separator */
 .archive-sep {
@@ -750,7 +790,7 @@ a.essay-link:hover .essay-arrow { color: var(--red); transform: translateX(4px);
   color: var(--fg-dim);
   max-width: 680px;
   margin-bottom: 2rem;
-  padding-left: calc(45px + 1rem);
+  padding-left: calc(70px + 2rem);
   font-style: italic;
 }
 
@@ -848,7 +888,6 @@ footer {
   text-align: right; line-height: 2.3;
   transition: color 0.6s;
 }
-.footer-info a { color: var(--red); text-decoration: none; }
 
 /* ═══════════════════════════════════════════════
    LANGUAGE SWITCH
@@ -908,7 +947,6 @@ body.es [data-es] { display: revert !important; }
   .nav-links { display: none; }
   .nav-r { gap: 0.8rem; }
 
-  /* Hero — prevent title overflow on small screens */
   .hero { padding: 0 1.2rem 3.5rem; }
   .title-line { font-size: clamp(3rem, 18vw, 5.5rem); }
   .hero-tag { font-size: 0.48rem; letter-spacing: 0.2em; }
@@ -917,7 +955,6 @@ body.es [data-es] { display: revert !important; }
   .scroll-hint { margin-left: 0; flex-direction: row; gap: 1rem; }
   .scroll-hint-line { width: 30px; height: 1px; background: linear-gradient(to right, var(--red), transparent); animation: none; }
 
-  /* Scroll showcase */
   .sc-panel { padding: 0 1.2rem; }
   .sc-label { left: 1.2rem; top: 5rem; font-size: 0.45rem; }
   .sc-counter { right: 1.2rem; bottom: 2rem; }
@@ -931,23 +968,19 @@ body.es [data-es] { display: revert !important; }
   .sc-tag-big.sz3 { font-size: clamp(0.8rem, 3vw, 1.4rem); }
   .sc-p5-title { font-size: clamp(1.8rem, 7vw, 3.5rem); }
 
-  /* Essays */
   #essays { padding: 4rem 1.2rem; }
   .essays-head { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-  .essay-row { grid-template-columns: 45px 1fr; gap: 1rem; padding: 1.8rem 0; }
+  .essay-row, a.essay-link { grid-template-columns: 45px 1fr; gap: 1rem; padding: 1.8rem 0; }
   .essay-arrow { display: none; }
   .essay-t { font-size: 1rem; }
   .essay-x { font-size: 0.58rem; }
 
-  /* Strip */
   .strip-inner { font-size: 0.9rem; }
 
-  /* Footer */
   footer { flex-direction: column; gap: 2rem; align-items: flex-start; padding: 3rem 1.2rem 2rem; }
   .footer-info { text-align: left; }
   .footer-logo { font-size: 2.5rem; }
 
-  /* Intro */
   #intro { padding: 1.5rem; }
   .intro-logo { font-size: clamp(2rem, 12vw, 4rem); }
 }
@@ -1048,42 +1081,38 @@ body.es [data-es] { display: revert !important; }
 <div id="showcase-track">
   <div id="showcase-sticky">
 
-    <!-- Background atmosphere panels -->
     <div class="sc-bg-panels">
       <div class="sc-bg-panel sc-bg-panel-1 active" id="bg1"></div>
       <div class="sc-bg-panel sc-bg-panel-2" id="bg2"></div>
       <div class="sc-bg-panel sc-bg-panel-3" id="bg3"></div>
     </div>
 
-    <!-- Top progress bar -->
     <div class="sc-progress"><div class="sc-progress-fill" id="sc-fill"></div></div>
 
-    <!-- Section label -->
-    <div class="sc-label">
-      <span data-en>// 001 — FEATURED ESSAY</span>
-      <span data-es>// 001 — ENSAYO DESTACADO</span>
+    <div class="sc-label" id="sc-label">
+      <span data-en>// F.01 — FOUNDING DOCUMENT</span>
+      <span data-es>// F.01 — DOCUMENTO FUNDACIONAL</span>
     </div>
 
-    <!-- Panel counter -->
     <div class="sc-counter" id="sc-counter">01 / 05</div>
 
     <!-- Panel 1: Title reveal -->
     <div class="sc-panel sc-panel-1 visible" id="sp1">
       <div>
-        <div class="sc-p1-eyebrow">
-          <span data-en>// FEATURED ESSAY — THEORY / GEOPOLITICS</span>
-          <span data-es>// ENSAYO DESTACADO — TEORÍA / GEOPOLÍTICA</span>
+        <div class="sc-p1-eyebrow" id="sc-eyebrow">
+          <span data-en>// FOUNDING DOCUMENT — MEMORY / POLITICAL VIOLENCE</span>
+          <span data-es>// DOCUMENTO FUNDACIONAL — MEMORIA / VIOLENCIA POLÍTICA</span>
         </div>
-        <div class="sc-p1-title">
-          <span data-en>On the Grammar<br>of Contemporary<br>Warfare</span>
-          <span data-es>Sobre la Gramática<br>de la Guerra<br>Contemporánea</span>
+        <div class="sc-p1-title" id="sc-display-title">
+          <span data-en>THE SENDERISTA<br>MONSTER</span>
+          <span data-es>EL MONSTRUO<br>SENDERISTA</span>
         </div>
-        <div class="sc-p1-sub">
-          <span>Feb 2025</span>
+        <div class="sc-p1-sub" id="sc-meta">
+          <span>2020</span>
           <span>·</span>
-          <span data-en>8 min read</span><span data-es>8 min lectura</span>
+          <span data-en>45 min read</span><span data-es>45 min lectura</span>
           <span>·</span>
-          <span>Theory / Geopolitics</span>
+          <span>Memory / Political Violence</span>
         </div>
       </div>
     </div>
@@ -1092,8 +1121,8 @@ body.es [data-es] { display: revert !important; }
     <div class="sc-panel sc-panel-2" id="sp2">
       <blockquote class="sc-p2-quote">
         <span class="qmark">"</span>
-        <span data-en>To speak of war is already to be implicated in its grammar — a system of signs that naturalizes destruction and renders the body of the other as territory to be seized.</span>
-        <span data-es>Hablar de la guerra es ya estar implicado en su gramática — un sistema de signos que naturaliza la destrucción y convierte el cuerpo del otro en territorio por conquistar.</span>
+        <span data-en>It has been learned to fear the senderista monster but not the State monster. This is one of the first but main observations we can draw from Agüero's authentic questions.</span>
+        <span data-es>Se ha aprendido a temer al monstruo senderista pero no al monstruo del Estado. Esta es una de las primeras pero principales observaciones que podemos extraer de las preguntas auténticas de Agüero.</span>
         <span class="qmark">"</span>
       </blockquote>
       <div class="sc-p2-attr">— Speculative Warfare</div>
@@ -1104,33 +1133,34 @@ body.es [data-es] { display: revert !important; }
       <div class="sc-p3-num">¶</div>
       <div class="sc-p3-body">
         <div class="sc-p3-title">
-          <span data-en>What does it mean to theorize violence?</span>
-          <span data-es>¿Qué significa teorizar la violencia?</span>
+          <span data-en>The authentic questions</span>
+          <span data-es>Las preguntas auténticas</span>
         </div>
         <p class="sc-p3-text">
-          <span data-en>This essay interrogates the conceptual vocabulary we inherit when we speak of war — and what remains unspeakable. The language of strategy, of collateral damage, of theatre — each term is a political act. Each metaphor a choice.</span>
-          <span data-es>Este ensayo interroga el vocabulario conceptual que heredamos cuando hablamos de guerra — y lo que permanece indecible. El lenguaje de la estrategia, del daño colateral, del teatro — cada término es un acto político. Cada metáfora, una elección.</span>
+          <span data-en>A reading of Agüero's post-conflict testimony through the figure of the senderista monster — analyzing its political and symbolic implications for Peruvian memory, reconciliation, and the authentic questions a society refuses to ask.</span>
+          <span data-es>Una lectura del testimonio post-conflicto de Agüero a través de la figura del monstruo senderista — analizando sus implicaciones políticas y simbólicas para la memoria peruana, la reconciliación y las preguntas auténticas que una sociedad se niega a formular.</span>
         </p>
       </div>
     </div>
 
     <!-- Panel 4: Theme cloud -->
     <div class="sc-panel sc-panel-4" id="sp4">
-      <span class="sc-tag-big sz1 red" data-en>WARFARE</span>
-      <span class="sc-tag-big sz1 red" data-es>GUERRA</span>
-      <span class="sc-tag-big sz1" data-en>THEORY</span>
-      <span class="sc-tag-big sz1" data-es>TEORÍA</span>
-      <span class="sc-tag-big sz2">FOUCAULT</span>
-      <span class="sc-tag-big sz2" data-en>LANGUAGE</span>
-      <span class="sc-tag-big sz2" data-es>LENGUAJE</span>
-      <span class="sc-tag-big sz2" data-en>VIOLENCE</span>
-      <span class="sc-tag-big sz2" data-es>VIOLENCIA</span>
-      <span class="sc-tag-big sz3">CLAUSEWITZ</span>
-      <span class="sc-tag-big sz3" data-en>STRATEGY</span>
-      <span class="sc-tag-big sz3" data-es>ESTRATEGIA</span>
-      <span class="sc-tag-big sz3">BAUDRILLARD</span>
-      <span class="sc-tag-big sz3" data-en>SPECTACLE</span>
-      <span class="sc-tag-big sz3" data-es>ESPECTÁCULO</span>
+      <span class="sc-tag-big sz1 red" data-en>MEMORY</span>
+      <span class="sc-tag-big sz1 red" data-es>MEMORIA</span>
+      <span class="sc-tag-big sz1" data-en>VIOLENCE</span>
+      <span class="sc-tag-big sz1" data-es>VIOLENCIA</span>
+      <span class="sc-tag-big sz2">AGÜERO</span>
+      <span class="sc-tag-big sz2" data-en>TERROR</span>
+      <span class="sc-tag-big sz2" data-es>TERROR</span>
+      <span class="sc-tag-big sz2" data-en>RECONCILIATION</span>
+      <span class="sc-tag-big sz2" data-es>RECONCILIACIÓN</span>
+      <span class="sc-tag-big sz3">ŽIŽEK</span>
+      <span class="sc-tag-big sz3">SENDERO</span>
+      <span class="sc-tag-big sz3" data-en>FORGIVENESS</span>
+      <span class="sc-tag-big sz3" data-es>PERDÓN</span>
+      <span class="sc-tag-big sz3">LACAN</span>
+      <span class="sc-tag-big sz3" data-en>STATE</span>
+      <span class="sc-tag-big sz3" data-es>ESTADO</span>
     </div>
 
     <!-- Panel 5: CTA -->
@@ -1140,22 +1170,21 @@ body.es [data-es] { display: revert !important; }
         <span data-es>// CONTINUAR LEYENDO</span>
       </div>
       <div class="sc-p5-title">
-        <span data-en>On the Grammar of<br>Contemporary Warfare</span>
-        <span data-es>Sobre la Gramática de<br>la Guerra Contemporánea</span>
+        <span data-en>The Senderista Monster<br>in <em>Los rendidos</em></span>
+        <span data-es>El monstruo senderista<br>en <em>Los rendidos</em></span>
       </div>
-      <button class="sc-cta">
+      <a href="senderista-monster.html" class="sc-cta">
         <span data-en>READ THE ESSAY →</span>
         <span data-es>LEER EL ENSAYO →</span>
-      </button>
+      </a>
     </div>
 
-  </div><!-- /#showcase-sticky -->
-</div><!-- /#showcase-track -->
+  </div>
+</div>
 
 <!-- ══ ESSAYS LIST ════════════════════════════════ -->
 <section id="essays">
 
-  <!-- CURRENT WORK -->
   <div class="essays-head">
     <div>
       <div class="section-eyebrow">
@@ -1171,7 +1200,7 @@ body.es [data-es] { display: revert !important; }
   </div>
 
   <!-- Essay 1 -->
-  <div class="essay-row">
+  <a href="grammar-of-warfare.html" class="essay-row essay-link">
     <div class="essay-num">01 —</div>
     <div class="essay-body">
       <div class="essay-tags">
@@ -1186,10 +1215,10 @@ body.es [data-es] { display: revert !important; }
       <div class="essay-meta">— Feb 2025 &nbsp;·&nbsp; 8 min read</div>
     </div>
     <div class="essay-arrow">→</div>
-  </div>
+  </a>
 
   <!-- Essay 2 -->
-  <div class="essay-row">
+  <a href="spectral-economies.html" class="essay-row essay-link">
     <div class="essay-num">02 —</div>
     <div class="essay-body">
       <div class="essay-tags">
@@ -1204,10 +1233,10 @@ body.es [data-es] { display: revert !important; }
       <div class="essay-meta">— Jan 2025 &nbsp;·&nbsp; 12 min read</div>
     </div>
     <div class="essay-arrow">→</div>
-  </div>
+  </a>
 
   <!-- Essay 3 -->
-  <div class="essay-row">
+  <a href="ruins-as-method.html" class="essay-row essay-link">
     <div class="essay-num">03 —</div>
     <div class="essay-body">
       <div class="essay-tags">
@@ -1222,7 +1251,7 @@ body.es [data-es] { display: revert !important; }
       <div class="essay-meta">— Dec 2024 &nbsp;·&nbsp; 10 min read</div>
     </div>
     <div class="essay-arrow">→</div>
-  </div>
+  </a>
 
   <!-- ARCHIVE SEPARATOR -->
   <div class="archive-sep">
@@ -1264,7 +1293,6 @@ body.es [data-es] { display: revert !important; }
 <!-- ══ ABOUT ══════════════════════════════════════ -->
 <section id="about">
 
-  <!-- LEFT: Manifesto -->
   <div class="about-left">
     <div class="section-eyebrow">
       <span data-en>// 003 — MANIFESTO</span>
@@ -1286,7 +1314,6 @@ body.es [data-es] { display: revert !important; }
     </div>
   </div>
 
-  <!-- RIGHT: Bio -->
   <div class="about-right">
     <div class="about-bio" data-en>
       <strong>// The Founder</strong>
@@ -1309,8 +1336,8 @@ body.es [data-es] { display: revert !important; }
 <footer>
   <div class="footer-logo">SW</div>
   <div class="footer-info">
-    <span data-en>SPECULATIVE WARFARE<br>Utrecht, Netherlands<br><a href="#">Substack</a> &nbsp;·&nbsp; <a href="#">Contact</a></span>
-    <span data-es>GUERRA ESPECULATIVA<br>Utrecht, Países Bajos<br><a href="#">Substack</a> &nbsp;·&nbsp; <a href="#">Contacto</a></span>
+    <span data-en>SPECULATIVE WARFARE<br>Utrecht, Netherlands</span>
+    <span data-es>GUERRA ESPECULATIVA<br>Utrecht, Países Bajos</span>
   </div>
 </footer>
 
@@ -1358,27 +1385,20 @@ let lastPanel = 0;
 
 function updateShowcase() {
   const track  = document.getElementById('showcase-track');
-  const sticky = document.getElementById('showcase-sticky');
   const rect   = track.getBoundingClientRect();
   const trackH = track.offsetHeight - window.innerHeight;
   const scrolled = Math.max(0, -rect.top);
   const progress = Math.min(1, scrolled / trackH);
 
-  // Progress bar
   document.getElementById('sc-fill').style.width = (progress * 100) + '%';
 
-  // Which panel (0–4)
   const panelIndex = Math.min(panels.length - 1, Math.floor(progress * panels.length));
 
   if (panelIndex !== lastPanel) {
-    // Hide old
     document.getElementById(panels[lastPanel]).classList.remove('visible');
-    // Show new
     document.getElementById(panels[panelIndex]).classList.add('visible');
-    // Update counter
     document.getElementById('sc-counter').textContent =
       String(panelIndex + 1).padStart(2,'0') + ' / 0' + panels.length;
-    // Swap bg
     bgs.forEach((b,i) => {
       document.getElementById(b).classList.toggle('active', i === Math.floor(panelIndex / 2));
     });
@@ -1398,7 +1418,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 
-document.querySelectorAll('.essay-row').forEach((el, i) => {
+document.querySelectorAll('.essay-row, a.essay-link').forEach((el, i) => {
   el.style.transitionDelay = `${i * 0.1}s`;
   io.observe(el);
 });
@@ -1551,7 +1571,6 @@ function enter() {
   document.getElementById('intro').classList.add('gone');
   animateChars();
 
-  // Build audio inside user gesture — required for iOS Safari
   try {
     buildAudio();
     const startAudio = () => {
@@ -1561,7 +1580,6 @@ function enter() {
       document.getElementById('visualizer').classList.add('on');
       startViz();
     };
-    // iOS requires explicit resume inside gesture handler
     if (ctx.state === 'suspended') {
       ctx.resume().then(startAudio);
     } else {
@@ -1572,7 +1590,7 @@ function enter() {
   }
 }
 
-// iOS Safari second-chance unlock on any touch
+// iOS Safari second-chance unlock
 document.addEventListener('touchstart', function unlockAudio() {
   if (ctx && ctx.state === 'suspended') ctx.resume();
 }, { once: true });

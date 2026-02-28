@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spectral Economies — Speculative Warfare</title>
+<meta name="description" content="The image of war precedes the war itself. Forthcoming essay from Speculative Warfare.">
+<meta property="og:title" content="Spectral Economies: Media, Conflict, and the Image — Speculative Warfare">
+<meta property="og:description" content="The image of war precedes the war itself. Forthcoming.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://speculative-warfare.netlify.app/spectral-economies.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:        #c8001a;
+  --red-dim:    #5a000c;
+  --mono:       'Share Tech Mono', monospace;
+  --display:    'Bebas Neue', sans-serif;
+  --serif:      'DM Serif Display', serif;
+  --body-mono:  'Space Mono', monospace;
+}
+
+[data-theme="dark"] {
+  --bg:           #050505;
+  --bg2:          #0c0b0a;
+  --fg:           #e8e4dc;
+  --fg-dim:       #968f88;
+  --fg-dimmer:    #3a3533;
+  --border:       rgba(232,228,220,0.06);
+  --border-r:     rgba(200,0,26,0.25);
+  --noise:        0.045;
+  --nav-bg:       rgba(5,5,5,0.92);
+}
+
+[data-theme="light"] {
+  --bg:           #f0ebe2;
+  --bg2:          #e8e2d9;
+  --fg:           #151210;
+  --fg-dim:       #666;
+  --fg-dimmer:    #bbb;
+  --border:       rgba(0,0,0,0.06);
+  --border-r:     rgba(200,0,26,0.18);
+  --noise:        0.02;
+  --nav-bg:       rgba(240,235,226,0.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  overflow-x: hidden;
+  transition: background 0.6s, color 0.6s;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--noise);
+  pointer-events: none; z-index: 9999;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  padding: 1.2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  transition: background 0.6s, border-color 0.6s;
+}
+
+.nav-logo { font-family: var(--display); font-size: 1.1rem; letter-spacing: 0.15em; color: var(--fg); text-decoration: none; }
+.nav-logo span { color: var(--red); }
+.nav-r { display: flex; align-items: center; gap: 1.5rem; }
+.nav-back { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--fg-dim); text-decoration: none; border: 1px solid var(--border); padding: 0.4rem 0.8rem; transition: color 0.3s, border-color 0.3s; }
+.nav-back:hover { color: var(--red); border-color: var(--red-dim); }
+.theme-btn { background: none; border: 1px solid var(--border); color: var(--fg-dim); cursor: pointer; font-size: 0.85rem; padding: 0.35rem 0.6rem; transition: color 0.3s, border-color 0.3s; }
+.theme-btn:hover { color: var(--red); border-color: var(--red-dim); }
+
+.forth-wrapper { max-width: 740px; margin: 0 auto; padding: 9rem 2rem 8rem; min-height: 100vh; display: flex; flex-direction: column; }
+.forth-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border-r); padding-bottom: 3rem; }
+.forth-num { font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem; display: block; }
+.forth-title { font-family: var(--display); font-size: clamp(2rem, 6vw, 3.8rem); line-height: 1.05; letter-spacing: 0.02em; color: var(--fg); margin-bottom: 2rem; }
+.forth-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.etag { font-family: var(--mono); font-size: 0.45rem; letter-spacing: 0.25em; text-transform: uppercase; border: 1px solid var(--border); padding: 0.25rem 0.6rem; color: var(--fg-dim); }
+.etag.lt { border-color: var(--red-dim); color: var(--red); }
+.forth-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; padding: 4rem 0; }
+.forth-status { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--red); }
+.forth-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--red), transparent); }
+.forth-desc { font-family: var(--body-mono); font-size: 0.6rem; line-height: 2.1; color: var(--fg-dim); text-align: center; max-width: 480px; }
+.forth-footer { margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--border-r); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.forth-footer-brand { font-family: var(--display); font-size: 1.5rem; color: var(--fg-dimmer); letter-spacing: 0.1em; }
+.forth-footer-brand span { color: var(--red); }
+.back-link { font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-dim); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.3s, border-color 0.3s; }
+.back-link:hover { color: var(--red); border-color: var(--red); }
+
+[data-es] { display: none !important; }
+body.es [data-en] { display: none !important; }
+body.es [data-es] { display: revert !important; }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.2rem; }
+  .forth-wrapper { padding: 7rem 1.2rem 5rem; }
+  .forth-title { font-size: clamp(1.8rem, 9vw, 3rem); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">SW<span>_</span></a>
+  <div class="nav-r">
+    <a href="index.html#essays" class="nav-back"><span data-en>← Essays</span><span data-es>← Ensayos</span></a>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">◑</button>
+  </div>
+</nav>
+
+<div class="forth-wrapper">
+  <header class="forth-header">
+    <span class="forth-num">// 02 — Forthcoming</span>
+    <h1 class="forth-title">
+      <span data-en>Spectral Economies: Media, Conflict, and the Image</span>
+      <span data-es>Economías espectrales: medios, conflicto e imagen</span>
+    </h1>
+    <div class="forth-tags">
+      <span class="etag">Media</span>
+      <span class="etag">Speculation</span>
+      <span class="etag lt">ES</span>
+    </div>
+  </header>
+
+  <div class="forth-body">
+    <div class="forth-status">// Forthcoming</div>
+    <div class="forth-line"></div>
+    <p class="forth-desc">
+      <span data-en>The image of war precedes the war itself. A meditation on how media constructs the temporality of conflict, and the political stakes of representation.</span>
+      <span data-es>La imagen de la guerra precede a la guerra misma. Una meditación sobre cómo los medios construyen la temporalidad del conflicto y las apuestas políticas de la representación.</span>
+    </p>
+  </div>
+
+  <div class="forth-footer">
+    <div class="forth-footer-brand">SPECULATIVE WARFARE<span>_</span></div>
+    <a href="index.html#essays" class="back-link"><span data-en>← Return to Essays</span><span data-es>← Volver a Ensayos</span></a>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>
